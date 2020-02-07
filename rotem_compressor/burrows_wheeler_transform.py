@@ -7,7 +7,7 @@ END_CHAR = 255
 CHUNK_SIZE = 100
 
 
-class BurrowsWhveelerTransform(ICompressor):
+class BurrowsWheelerTransform(ICompressor):
     def __init__(self, chunk_size=CHUNK_SIZE):
         self.chunk_size = chunk_size
 
