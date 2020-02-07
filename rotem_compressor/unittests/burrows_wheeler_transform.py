@@ -1,7 +1,4 @@
-import gzip
-
 from rotem_compressor.burrows_wheeler_transform import BurrowsWheelerTransform, BEGIN_CHAR, END_CHAR
-from rotem_compressor.rotem_compressor import RotemCompressor
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
 
 
