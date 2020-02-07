@@ -2,8 +2,11 @@ from rotem_compressor.burrows_wheeler_transform import BurrowsWheelerTransform
 from rotem_compressor.contract.ICompressor import ICompressor
 import gzip
 
+from rotem_compressor.run_length_encoding import RunLengthEncoding
+
+
 class RotemCompressor(ICompressor):
-    compressions = [BurrowsWheelerTransform(), gzip]
+    compressions = [BurrowsWheelerTransform(), RunLengthEncoding(), gzip]
     def compress(self, data):
         for compression in self.compressions:
             data = compression.compress(data)
