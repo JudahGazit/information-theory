@@ -1,9 +1,15 @@
+from rotem_compressor.burrows_wheeler_transform import BurrowsWhveelerTransform
 from rotem_compressor.contract.ICompressor import ICompressor
 import gzip
 
 class RotemCompressor(ICompressor):
+    compressions = [BurrowsWhveelerTransform(), gzip]
     def compress(self, data):
-        return gzip.compress(data)
+        for compression in self.compressions:
+            data = compression.compress(data)
+        return data
 
     def decompress(self, compressed):
-        return gzip.decompress(compressed)
+        for compression in self.compressions[::-1]:
+            compressed = compression.decompress(compressed)
+        return compressed
