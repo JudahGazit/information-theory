@@ -4,7 +4,7 @@ from rotem_compressor.contract.ICompressor import ICompressor
 
 BEGIN_CHAR = 0
 END_CHAR = 255
-CHUNK_SIZE = 300
+CHUNK_SIZE = 10000
 
 
 class BurrowsWheelerTransform(ICompressor):
