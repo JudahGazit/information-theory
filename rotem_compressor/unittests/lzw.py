@@ -18,5 +18,11 @@ class LZWTests(CompressionTestCase):
     def test_decompression_simple(self):
         expected_result = 'aabaaba'
         compressed = [ord('a'), ord('a'), ord('b'), 256, 258]
-        decompressed = self.compressor.decompress(to_bytearray(compressed))
+        decompressed = self.compressor.decompress(compressed)
         self.assertEqual(expected_result, ''.join(from_bytearray(decompressed)))
+
+    def test_compression_decompression_of_reacurring(self):
+        text = 'B-u-u-ust B-u-u-ust'
+        compressed = self.compressor.compress(bytearray(text, 'ASCII'))
+        decompressed = self.compressor.decompress(compressed)
+        self.assertEqual(text, ''.join(from_bytearray(decompressed)))
