@@ -1,4 +1,4 @@
-from rotem_compressor.huffman import Huffman, Node
+from rotem_compressor.huffman_compression import Huffman, Node
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
 
 
@@ -21,11 +21,11 @@ class RunLengthEncodingTests(CompressionTestCase):
         # Asserting by the image from wikipedia:
         # https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Huffman_tree_2.svg/675px-Huffman_tree_2.svg.png
         dictionary = [0] * 256
-        self.compressor.tree_to_dictionary(dictionary, 0, tree)
-        self.assertLessEqual(len(f'{dictionary[ord("e")]:b}'), 3)
-        self.assertLessEqual(len(f'{dictionary[ord("a")]:b}'), 3)
-        self.assertLessEqual(len(f'{dictionary[ord(" ")]:b}'), 3)
-        self.assertLessEqual(len(f'{dictionary[ord("o")]:b}'), 5)
+        self.compressor.tree_to_dictionary(dictionary, '0', tree)
+        self.assertLessEqual(len(dictionary[ord("e")]), 3)
+        self.assertLessEqual(len(dictionary[ord("a")]), 3)
+        self.assertLessEqual(len(dictionary[ord(" ")]), 3)
+        self.assertLessEqual(len(dictionary[ord("o")]), 5)
 
     def test_encode_decode_tree(self):
         data = 'this is an example of a huffman tree'
@@ -38,8 +38,8 @@ class RunLengthEncodingTests(CompressionTestCase):
         self.compressor.decode_tree(encode, decode_tree)
         dictionary_original = [0] * 256
         dictionary_decode = [0] * 256
-        self.compressor.tree_to_dictionary(dictionary_original, 0, tree)
-        self.compressor.tree_to_dictionary(dictionary_decode, 0, decode_tree)
+        self.compressor.tree_to_dictionary(dictionary_original, '0', tree)
+        self.compressor.tree_to_dictionary(dictionary_decode, '0', decode_tree)
         self.assertListEqual(dictionary_original, dictionary_decode)
 
     def test_encode_tree(self):

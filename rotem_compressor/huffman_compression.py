@@ -1,6 +1,8 @@
 from rotem_compressor.contract.ICompressor import ICompressor
 import queue
 
+from rotem_compressor.utils import bits_to_numbers
+
 LEAF_SYMBOL = 1
 NONLEAF_SYMBOL = 0
 
@@ -28,10 +30,13 @@ def pop_number(bts):
 
 
 class Huffman(ICompressor):
+    def __init__(self, dictionary_size=256):
+        self.dictionary_size = dictionary_size
+
     def compress(self, data):
         result = ''
         root = self.construct_tree(data)
-        dictionary = [None] * 256
+        dictionary = [None] * self.dictionary_size
         self.tree_to_dictionary(dictionary, '0', root)
         for char in data:
             result += dictionary[char]
@@ -40,8 +45,7 @@ class Huffman(ICompressor):
         result_prefix = encode_number(len(encode_tree))
         result_prefix += ''.join([encode_number(n or 0) for n in dictionary])
         result = result_prefix + result
-        result = [int(result[i:i+8], 2) for i in range(0, len(result), 8)]
-        return bytes(result)
+        return bits_to_numbers(result)
 
     def decompress(self, compressed):
         compressed = list(''.join(['{0:b}'.format(x) for x in compressed]))
@@ -62,7 +66,7 @@ class Huffman(ICompressor):
         encode_tree.pop(0)
         decode_tree = Node(None, None, None)
         self.decode_tree(encode_tree, decode_tree)
-        dictionary = [None] * 256
+        dictionary = [None] * self.dictionary_size
         self.tree_to_dictionary(dictionary, '0', decode_tree)
         return dictionary, payload
 
@@ -97,7 +101,7 @@ class Huffman(ICompressor):
         return current, new_node
 
     def get_frequencies(self, data):
-        frequencies = [0] * 256
+        frequencies = [0] * self.dictionary_size
         for char in data:
             frequencies[char] += 1
         return frequencies

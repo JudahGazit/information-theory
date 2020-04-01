@@ -2,6 +2,7 @@ import zipfile
 
 from rotem_compressor.rotem_compressor import RotemCompressor
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
+from rotem_compressor.utils import to_bytearray
 
 
 class RotemCompressionTests(CompressionTestCase):
@@ -9,9 +10,10 @@ class RotemCompressionTests(CompressionTestCase):
 
     def test_size_less_than_zip(self):
         rotem_compression = self.compressor.compress(self.data)
-        with zipfile.ZipFile('../../test/dickens.zip', 'w', 14) as zfile:
+        with zipfile.ZipFile('../../test/dickens.zip', 'w', 14, False) as zfile:
             zfile.writestr('dickens.txt', self.data)
         with open('../../test/dickens.zip', 'rb') as f:
-            zip_compression = len(f.read())
-        print(zip_compression)
+            data = f.read()
+            zip_compression = len(data)
+        print(f'zip: {zip_compression}, rotem:{len(rotem_compression)}')
         self.assertLessEqual(len(rotem_compression), zip_compression)

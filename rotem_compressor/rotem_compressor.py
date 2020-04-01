@@ -1,14 +1,15 @@
 from rotem_compressor.burrows_wheeler_transform import BurrowsWheelerTransform
 from rotem_compressor.contract.ICompressor import ICompressor
-import zlib
 
-from rotem_compressor.huffman import Huffman
+from rotem_compressor.huffman_compression import Huffman
+from rotem_compressor.lzw import LZW
 from rotem_compressor.move_to_front import MoveToFront
 from rotem_compressor.run_length_encoding import RunLengthEncoding
 
 
 class RotemCompressor(ICompressor):
-    compressions = [RunLengthEncoding(), BurrowsWheelerTransform(),  MoveToFront(), Huffman()]
+    compressions = [LZW(return_raw_results=False)]
+
     def compress(self, data):
         for compression in self.compressions:
             data = compression.compress(data)

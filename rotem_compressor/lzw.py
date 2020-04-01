@@ -5,29 +5,33 @@ from rotem_compressor.utils import *
 
 
 class LZW(ICompressor):
-    maximum_table_size = pow(2, int(12))
+    def __init__(self, maximum_table_size=2 ** 24, return_raw_results=True):
+        self.maximum_table_size = maximum_table_size
+        self.return_raw_results = return_raw_results
 
     def compress(self, data):
         dictionary_size = 256
         dictionary = {chr(i): i for i in range(dictionary_size)}
         string = ""
-        compressed_data = ""
+        compressed_data = []
         for symbol in data:
             string_plus_symbol = string + chr(symbol)
             if string_plus_symbol in dictionary:
                 string = string_plus_symbol
             else:
-                compressed_data += encode_number(dictionary[string], math.ceil(math.log2(dictionary_size)))
+                compressed_value = dictionary[string] if self.return_raw_results else encode_number(dictionary[string], math.ceil(math.log2(dictionary_size)))
+                compressed_data.append(compressed_value)
                 if len(dictionary) <= self.maximum_table_size:
                     dictionary[string_plus_symbol] = dictionary_size
                     dictionary_size += 1
                 string = chr(symbol)
 
         if string in dictionary:
-            compressed_data += encode_number(dictionary[string], math.ceil(math.log2(dictionary_size)))
-        return bits_to_numbers(compressed_data)
-
-
+            compressed_value = dictionary[string] if self.return_raw_results else encode_number(dictionary[string], math.ceil(math.log2(dictionary_size)))
+            compressed_data.append(compressed_value)
+        if not self.return_raw_results:
+            compressed_data = bits_to_numbers(''.join(compressed_data))
+        return compressed_data
 
     def decompress(self, compressed):
         decompresed = []
