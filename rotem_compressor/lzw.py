@@ -1,13 +1,14 @@
 import math
 
 from rotem_compressor.contract.ICompressor import ICompressor
+from rotem_compressor.data_models.bit_stack import BitList
 from rotem_compressor.utils import *
 
 
 class LZW(ICompressor):
-    def __init__(self, maximum_table_size=2 ** 24, return_raw_results=True):
+    def __init__(self, maximum_table_size=2 ** 24, raw_values=True):
         self.maximum_table_size = maximum_table_size
-        self.raw_values = return_raw_results
+        self.raw_values = raw_values
 
     def compress(self, data):
         dictionary_size = 256
@@ -40,21 +41,21 @@ class LZW(ICompressor):
         dictionary = {chr(i): i for i in range(dictionary_size)}
         string = ""  # String is null.
         i = 0
-        while len(compressed):
-            try:
-                i += 1
-                c, compressed = compressed[0], compressed[1:] if self.raw_values else pop_number(compressed, math.ceil(math.log2(dictionary_size)))
-                symbol = dictionary_inv.get(c, string + string[:1])
-                decompresed.append(symbol)
-                string_plus_symbol = string + symbol[:1]  # get input symbol.
-                if string_plus_symbol in dictionary:
-                    string = string_plus_symbol
-                else:
-                    if len(dictionary) <= self.maximum_table_size:
-                        dictionary[string_plus_symbol] = dictionary_size
-                        dictionary_inv[dictionary_size] = string_plus_symbol
-                        dictionary_size += 1
-                    string = symbol
-            except:
-                raise
+        stack = compressed[::-1] if self.raw_values else BitList(compressed)
+        code_width = 8
+        while (not self.raw_values and len(stack) >= code_width) or (self.raw_values and len(stack) > 0):
+            i += 1
+            code_width = math.ceil(math.log2(2 ** 8 + i - 1))
+            c = stack.pop() if self.raw_values else stack.pop(code_width)
+            symbol = dictionary_inv.get(c, string + string[:1])
+            decompresed.append(symbol)
+            string_plus_symbol = string + symbol[:1]  # get input symbol.
+            if string_plus_symbol in dictionary:
+                string = string_plus_symbol
+            else:
+                if len(dictionary) <= self.maximum_table_size:
+                    dictionary[string_plus_symbol] = dictionary_size
+                    dictionary_inv[dictionary_size] = string_plus_symbol
+                    dictionary_size += 1
+                string = symbol
         return to_bytearray(''.join(decompresed))

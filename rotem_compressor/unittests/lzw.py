@@ -7,7 +7,7 @@ from rotem_compressor.utils import to_bytearray, from_bytearray
 
 
 class LZWTests(CompressionTestCase):
-    compressor = LZW()
+    compressor = LZW(raw_values=True)
 
     def test_compression_simple(self):
         text = 'aabaaba'

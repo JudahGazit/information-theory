@@ -32,5 +32,10 @@ def pop_number(numbers, width=8):
     return popped, bits_to_numbers(rest)
 
 def bits_to_numbers(bits):
-    result = [int(bits[index:index + 8], 2) for index in range(0, len(bits), 8)]
+    result = []
+    for index in range(0, len(bits), 8):
+        bit = bits[index:index + 8]
+        bit = bit[::-1].zfill(8)[::-1]
+        bit = int(bit, 2)
+        result.append(bit)
     return bytearray(result)

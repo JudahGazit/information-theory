@@ -8,7 +8,7 @@ class CompressionTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         with open('../../test/dickens.txt', 'rb') as f:
-            cls.data = f.read(3 * 10 ** 6)
+            cls.data = f.read(1 * 10 ** 6)
 
     def test_decompression(self):
         if self.compressor:
