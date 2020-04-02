@@ -58,7 +58,8 @@ class LZW(ICompressor):
         stack = BitStack(compressed)
         code_width = 8
         while len(stack) >= code_width:
-            code_width = math.ceil(math.log2(2 ** 8 + len(decompressed)))
+            if len(decompressed) < self.maximum_table_size - self.initial_dictionary_size:
+                code_width = math.ceil(math.log2(2 ** 8 + len(decompressed)))
             code = stack.pop(code_width)
             prev_symbols = self.__decode_symbol(code, decompressed, dictionary, dictionary_inv, prev_symbols)
         return decompressed
