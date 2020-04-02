@@ -21,6 +21,19 @@ class TreeEncoder:
             self._encode_tree_recursive(encode, tree.left)
             self._encode_tree_recursive(encode, tree.right)
 
+    def encode_tree(self, tree):
+        encode = []
+        self._encode_tree_recursive(encode, tree)
+        return encode
+
+    def __read_encoded_tree(self, bit_stack):
+        encode_size = bit_stack.pop_natural_number()
+        encode_tree = []
+        for i in range(encode_size):
+            encode_tree.append(bit_stack.pop_natural_number())
+        encode_tree.pop(0)
+        return encode_tree
+
     def _construct_tree_from_list(self, encode, tree):
         if tree.left is None and len(encode):
             current, new_node = decode_node(encode)
@@ -32,19 +45,6 @@ class TreeEncoder:
             tree.right = new_node
             if current == NONLEAF_SYMBOL:
                 self._construct_tree_from_list(encode, tree.right)
-
-    def __read_encoded_tree(self, bit_stack):
-        encode_size = bit_stack.pop_natural_number()
-        encode_tree = []
-        for i in range(encode_size):
-            encode_tree.append(bit_stack.pop_natural_number())
-        encode_tree.pop(0)
-        return encode_tree
-
-    def encode_tree(self, tree):
-        encode = []
-        self._encode_tree_recursive(encode, tree)
-        return encode
 
     def decode_tree(self, bit_stack):
         encode_tree = self.__read_encoded_tree(bit_stack)
