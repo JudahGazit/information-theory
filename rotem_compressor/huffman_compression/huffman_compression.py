@@ -2,8 +2,10 @@ import queue
 
 from rotem_compressor.contract.ICompressor import ICompressor
 from rotem_compressor.data_models.bit_stack import BitStack
-from rotem_compressor.huffman_compression.tree_encoder import TreeEncoder
 from rotem_compressor.data_models.tree_node import Node
+from rotem_compressor.huffman_compression.dictionary import Dictionary
+from rotem_compressor.huffman_compression.tree_builder import TreeBuilder
+from rotem_compressor.huffman_compression.tree_encoder import TreeEncoder
 from rotem_compressor.utils import to_bytearray
 
 
@@ -11,12 +13,12 @@ class Huffman(ICompressor):
     def __init__(self, dictionary_size=256):
         self.dictionary_size = dictionary_size
         self.tree_encoder = TreeEncoder()
+        self.tree_builder = TreeBuilder(dictionary_size)
 
     def compress(self, data):
         payload = ''
-        root = self.construct_tree(data)
-        dictionary = [None] * self.dictionary_size
-        self.tree_to_dictionary(dictionary, '', root)
+        root = self.tree_builder.construct_tree(data)
+        dictionary = Dictionary(self.dictionary_size, root)
         for char in data:
             payload += dictionary[char]
         result = self.__build_result(data, root, payload)
@@ -36,46 +38,11 @@ class Huffman(ICompressor):
         result = []
         compressed = BitStack(compressed)
         data_length = compressed.pop_natural_number()
-        dictionary = self.decode_dictionary(compressed)
+        root = self.tree_encoder.decode_tree(compressed)
+        dictionary = Dictionary(self.dictionary_size, root)
         inverse_dictionary = {code: char for char, code in enumerate(dictionary)}
         while len(result) < data_length and len(compressed) > 0:
             popped = compressed.pop_prefix_code(inverse_dictionary)
             result.append(popped)
         return to_bytearray(result)
 
-    def decode_dictionary(self, compressed):
-        encode_size = compressed.pop_natural_number()
-        encode_tree = []
-        for i in range(encode_size):
-            encode_tree.append(compressed.pop_natural_number())
-        encode_tree.pop(0)
-        decode_tree = Node(None, None, None)
-        self.tree_encoder.decode_tree(encode_tree, decode_tree)
-        dictionary = [None] * self.dictionary_size
-        self.tree_to_dictionary(dictionary, '', decode_tree)
-        return dictionary
-
-    def get_frequencies(self, data):
-        frequencies = [0] * self.dictionary_size
-        for char in data:
-            frequencies[char] += 1
-        return frequencies
-
-    def construct_tree(self, data):
-        frequencies = self.get_frequencies(data)
-        priority_queue = queue.PriorityQueue()
-        for char, frequency in enumerate(frequencies):
-            if frequency > 0:
-                priority_queue.put((frequency, Node(None, None, char)))
-        while priority_queue.qsize() > 1:
-            left_frequency, left = priority_queue.get()
-            right_frequency, right = priority_queue.get()
-            priority_queue.put((left_frequency + right_frequency, Node(left, right, None)))
-        return priority_queue.get()[1]
-
-    def tree_to_dictionary(self, dictionary, prefix, tree):
-        if tree:
-            if tree.left is None and tree.right is None:
-                dictionary[tree.data] = prefix
-            self.tree_to_dictionary(dictionary, prefix + '0', tree.left)
-            self.tree_to_dictionary(dictionary, prefix + '1', tree.right)

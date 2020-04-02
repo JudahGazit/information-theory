@@ -17,17 +17,27 @@ class TreeEncoder:
             self.encode_tree_recursive(encode, tree.left)
             self.encode_tree_recursive(encode, tree.right)
 
-    def decode_tree(self, encode, tree):
+    def construct_tree_from_list(self, encode, tree):
         if tree.left is None and len(encode):
             current, new_node = self.decode_node(encode)
             tree.left = new_node
             if current == NONLEAF_SYMBOL:
-                self.decode_tree(encode, tree.left)
+                self.construct_tree_from_list(encode, tree.left)
         if tree.right is None and len(encode):
             current, new_node = self.decode_node(encode)
             tree.right = new_node
             if current == NONLEAF_SYMBOL:
-                self.decode_tree(encode, tree.right)
+                self.construct_tree_from_list(encode, tree.right)
+
+    def decode_tree(self, compressed):
+        encode_size = compressed.pop_natural_number()
+        encode_tree = []
+        for i in range(encode_size):
+            encode_tree.append(compressed.pop_natural_number())
+        encode_tree.pop(0)
+        decode_tree = Node(None, None, None)
+        self.construct_tree_from_list(encode_tree, decode_tree)
+        return decode_tree
 
     def decode_node(self, encode):
         current = encode.pop(0)
