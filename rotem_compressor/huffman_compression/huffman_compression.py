@@ -31,9 +31,9 @@ class Huffman(ICompressor):
         result = self.__build_result(data, root, payload)
         return result
 
-    def decompress(self, stack):
+    def decompress(self, compressed):
         result = []
-        stack = BitStack(stack)
+        stack = BitStack(compressed)
         data_length = stack.pop_natural_number()
         root = self.tree_encoder.decode_tree(stack)
         dictionary = Dictionary(self.dictionary_size, root)
