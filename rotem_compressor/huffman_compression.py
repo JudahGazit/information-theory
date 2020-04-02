@@ -1,10 +1,11 @@
 from rotem_compressor.contract.ICompressor import ICompressor
 import queue
 
-from rotem_compressor.utils import bits_to_numbers
+from rotem_compressor.utils import bits_to_numbers, to_bytearray
 
 LEAF_SYMBOL = 1
 NONLEAF_SYMBOL = 0
+
 
 def encode_number(n):
     number_bin = n if isinstance(n, str) else f'{n:b}'
@@ -12,6 +13,7 @@ def encode_number(n):
     prefix = '1' * len(log_number_bin)
     prefix += '0' + log_number_bin
     return prefix + number_bin
+
 
 def pop_number(bts):
     size = 0
@@ -37,26 +39,34 @@ class Huffman(ICompressor):
         result = ''
         root = self.construct_tree(data)
         dictionary = [None] * self.dictionary_size
-        self.tree_to_dictionary(dictionary, '0', root)
+        self.tree_to_dictionary(dictionary, '', root)
         for char in data:
             result += dictionary[char]
         encode_tree = []
         self.encode_tree(encode_tree, root)
-        result_prefix = encode_number(len(encode_tree))
-        result_prefix += ''.join([encode_number(n or 0) for n in dictionary])
+        result_prefix = encode_number(len(data))
+        result_prefix += encode_number(len(encode_tree))
+        result_prefix += ''.join([encode_number(n or 0) for n in encode_tree])
         result = result_prefix + result
         return bits_to_numbers(result)
 
     def decompress(self, compressed):
-        compressed = list(''.join(['{0:b}'.format(x) for x in compressed]))
+        compressed = list(''.join([bin(x)[2:].zfill(8) for x in compressed]))
+        len_data = pop_number(compressed)
         result = []
-        dictionary, payload = self.decode_dictionary(compressed)
+        dictionary = self.decode_dictionary(compressed)
         inverse_dictionary = {}
         for char, code in enumerate(dictionary):
             inverse_dictionary[code] = char
-        for char in payload:
-            result.append(inverse_dictionary[char])
-        return bytearray(result)
+        char = ''
+        compressed = compressed[::-1]
+        while len(result) < len_data:
+            char += compressed.pop()
+            value = inverse_dictionary.get(char)
+            if value:
+                result.append(value)
+                char = ''
+        return bytearray(to_bytearray(result))
 
     def decode_dictionary(self, compressed):
         encode_size = pop_number(compressed)
@@ -67,8 +77,8 @@ class Huffman(ICompressor):
         decode_tree = Node(None, None, None)
         self.decode_tree(encode_tree, decode_tree)
         dictionary = [None] * self.dictionary_size
-        self.tree_to_dictionary(dictionary, '0', decode_tree)
-        return dictionary, payload
+        self.tree_to_dictionary(dictionary, '', decode_tree)
+        return dictionary
 
     def encode_tree(self, encode, tree):
         if tree:

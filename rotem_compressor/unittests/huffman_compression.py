@@ -1,4 +1,4 @@
-from rotem_compressor.huffman_compression import Huffman, Node
+from rotem_compressor.huffman_compression import Huffman, Node, encode_number
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
 
 
@@ -21,7 +21,7 @@ class RunLengthEncodingTests(CompressionTestCase):
         # Asserting by the image from wikipedia:
         # https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Huffman_tree_2.svg/675px-Huffman_tree_2.svg.png
         dictionary = [0] * 256
-        self.compressor.tree_to_dictionary(dictionary, '0', tree)
+        self.compressor.tree_to_dictionary(dictionary, '', tree)
         self.assertLessEqual(len(dictionary[ord("e")]), 3)
         self.assertLessEqual(len(dictionary[ord("a")]), 3)
         self.assertLessEqual(len(dictionary[ord(" ")]), 3)
