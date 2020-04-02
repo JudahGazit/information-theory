@@ -7,7 +7,6 @@ class RunLengthEncoding(ICompressor):
         self.threshold = threshold
 
     def compress(self, data):
-        data = []
         result = []
         last_char = None
         char_counter = 0
@@ -33,12 +32,27 @@ class RunLengthEncoding(ICompressor):
                 result.append(amount)
             else:
                 result.extend(amount * [char])
-        return bytearray(result)
+        return to_bytearray(result)
 
     def decompress(self, compressed):
         result = []
-        for i in range(0, len(compressed), 2):
-            amount, char = compressed[i], compressed[i + 1]
-            result.extend(amount * [char])
+        last_char = None
+        char_counter = 0
+        for char in compressed:
+            if last_char is None:
+                last_char = char
+            if char == last_char:
+                char_counter += 1
+            else:
+                if char_counter == self.threshold:
+                    result.extend(int(char) * [last_char])
+                    last_char = None
+                    char_counter = 0
+                else:
+                    result.extend(char_counter * [last_char])
+                    last_char = char
+                    char_counter = 1
+        if last_char:
+            result.extend(char_counter * [last_char])
         return to_bytearray(result)
 
