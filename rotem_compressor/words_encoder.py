@@ -8,7 +8,7 @@ from rotem_compressor.utils import to_bytearray
 NEW_LINE = '\n'
 SPACE = ' '
 SPACES = ''.join([NEW_LINE, SPACE])
-DELIMITERS = '.,;:\'"?!()-'
+DELIMITERS = '.,;:\'"?!(){}\[\]&#/_\{\}*`-'
 
 
 class WordsEncoder(ICompressor):
