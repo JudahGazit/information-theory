@@ -14,4 +14,4 @@ class CompressionTestCase(unittest.TestCase):
         if self.compressor:
             compression = self.compressor.compress(self.data)
             decompression = self.compressor.decompress(compression)
-            self.assertEqual(self.data.decode(), ''.join(from_bytearray(decompression)))
+            self.assertEqual(self.data, decompression)

@@ -12,9 +12,12 @@ class LZW(ICompressor):
         self.maximum_table_size = maximum_table_size
         self.raw_values = raw_values
 
-    def add_code_to_dictionary(self, dictionary, combined_symbols):
+    def add_code_to_dictionary(self, dictionary, combined_symbols, inv_dict=False):
         if len(dictionary) <= self.maximum_table_size:
-            dictionary[combined_symbols] = len(dictionary)
+            if inv_dict:
+                dictionary[len(dictionary)] = combined_symbols
+            else:
+                dictionary[combined_symbols] = len(dictionary)
         
     def get_code_from_dictionary(self, dictionary, string):
         if self.raw_values:
@@ -53,28 +56,42 @@ class LZW(ICompressor):
         self.code_last_symbols_if_necessary(compressed_data, dictionary, prev_symbols)
         return self.encode_result(compressed_data)
 
-    def decompress(self, compressed):
-        decompresed = []
-        dictionary_size = self.initial_dictionary_size
-        dictionary_inv = {i: chr(i) for i in range(dictionary_size)}
-        dictionary = {chr(i): i for i in range(dictionary_size)}
-        string = ""  # String is null.
+    def decompress_raw(self, compressed, dictionary_inv, dictionary, prev_symbols):
+        decompressed = []
+        for code in compressed:
+            prev_symbols = self.decode_symbol(code, decompressed, dictionary, dictionary_inv, prev_symbols)
+        return decompressed
+
+    def decompress_bits(self, compressed, dictionary_inv, dictionary, prev_symbols):
+        decompressed = []
         i = 0
-        stack = compressed[::-1] if self.raw_values else BitList(compressed)
+        stack = BitList(compressed)
         code_width = 8
-        while (not self.raw_values and len(stack) >= code_width) or (self.raw_values and len(stack) > 0):
+        while len(stack) >= code_width:
+            code_width = math.ceil(math.log2(2 ** 8 + i))
+            code = stack.pop(code_width)
+            prev_symbols = self.decode_symbol(code, decompressed, dictionary, dictionary_inv, prev_symbols)
             i += 1
-            code_width = math.ceil(math.log2(2 ** 8 + i - 1))
-            c = stack.pop() if self.raw_values else stack.pop(code_width)
-            symbol = dictionary_inv.get(c, string + string[:1])
-            decompresed.append(symbol)
-            string_plus_symbol = string + symbol[:1]  # get input symbol.
-            if string_plus_symbol in dictionary:
-                string = string_plus_symbol
-            else:
-                if len(dictionary) <= self.maximum_table_size:
-                    dictionary[string_plus_symbol] = dictionary_size
-                    dictionary_inv[dictionary_size] = string_plus_symbol
-                    dictionary_size += 1
-                string = symbol
-        return to_bytearray(''.join(decompresed))
+        return decompressed
+
+    def decode_symbol(self, code, decompressed, dictionary, dictionary_inv, prev_symbols):
+        symbol = dictionary_inv.get(code, prev_symbols + prev_symbols[:1])
+        decompressed.append(symbol)
+        combined_symbols = prev_symbols + symbol[:1]
+        if combined_symbols in dictionary:
+            prev_symbols = combined_symbols
+        else:
+            self.add_code_to_dictionary(dictionary, combined_symbols)
+            self.add_code_to_dictionary(dictionary_inv, combined_symbols, inv_dict=True)
+            prev_symbols = symbol
+        return prev_symbols
+
+    def decompress(self, compressed):
+        dictionary_inv = {i: chr(i) for i in range(self.initial_dictionary_size)}
+        dictionary = {chr(i): i for i in range(self.initial_dictionary_size)}
+        prev_symbols = ""
+        if self.raw_values:
+            decompressed = self.decompress_raw(compressed, dictionary_inv, dictionary, prev_symbols)
+        else:
+            decompressed = self.decompress_bits(compressed, dictionary_inv, dictionary, prev_symbols)
+        return to_bytearray(''.join(decompressed))
