@@ -2,13 +2,15 @@ import queue
 
 from rotem_compressor.contract.ICompressor import ICompressor
 from rotem_compressor.data_models.bit_stack import BitStack
-from rotem_compressor.huffman_compression.graph_node import Node, NONLEAF_SYMBOL, LEAF_SYMBOL
-from rotem_compressor.utils import bits_to_numbers, to_bytearray
+from rotem_compressor.huffman_compression.tree_encoder import TreeEncoder
+from rotem_compressor.data_models.tree_node import Node
+from rotem_compressor.utils import to_bytearray
 
 
 class Huffman(ICompressor):
     def __init__(self, dictionary_size=256):
         self.dictionary_size = dictionary_size
+        self.tree_encoder = TreeEncoder()
 
     def compress(self, data):
         payload = ''
@@ -22,8 +24,7 @@ class Huffman(ICompressor):
 
     def __build_result(self, data, root, payload):
         bit_stack = BitStack([])
-        encode_tree = []
-        self.encode_tree(encode_tree, root)
+        encode_tree = self.tree_encoder.encode_tree(root)
         bit_stack.append_natural_number(len(data))
         bit_stack.append_natural_number(len(encode_tree))
         for n in encode_tree:
@@ -49,40 +50,10 @@ class Huffman(ICompressor):
             encode_tree.append(compressed.pop_natural_number())
         encode_tree.pop(0)
         decode_tree = Node(None, None, None)
-        self.decode_tree(encode_tree, decode_tree)
+        self.tree_encoder.decode_tree(encode_tree, decode_tree)
         dictionary = [None] * self.dictionary_size
         self.tree_to_dictionary(dictionary, '', decode_tree)
         return dictionary
-
-    def encode_tree(self, encode, tree):
-        if tree:
-            if tree.left is None and tree.right is None:
-                encode.append(LEAF_SYMBOL)
-                encode.append(tree.data)
-            else:
-                encode.append(NONLEAF_SYMBOL)
-            self.encode_tree(encode, tree.left)
-            self.encode_tree(encode, tree.right)
-
-    def decode_tree(self, encode, tree):
-        if tree.left is None and len(encode):
-            current, new_node = self.decode_node(encode)
-            tree.left = new_node
-            if current == NONLEAF_SYMBOL:
-                self.decode_tree(encode, tree.left)
-        if tree.right is None and len(encode):
-            current, new_node = self.decode_node(encode)
-            tree.right = new_node
-            if current == NONLEAF_SYMBOL:
-                self.decode_tree(encode, tree.right)
-
-    def decode_node(self, encode):
-        current = encode.pop(0)
-        if current == NONLEAF_SYMBOL:
-            new_node = Node(None, None, None)
-        else:
-            new_node = Node(None, None, encode.pop(0))
-        return current, new_node
 
     def get_frequencies(self, data):
         frequencies = [0] * self.dictionary_size

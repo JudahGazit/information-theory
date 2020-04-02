@@ -1,4 +1,4 @@
-from rotem_compressor.huffman_compression.graph_node import Node
+from rotem_compressor.data_models.tree_node import Node
 from rotem_compressor.huffman_compression.huffman_compression import Huffman
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
 
@@ -32,11 +32,10 @@ class RunLengthEncodingTests(CompressionTestCase):
         data = 'this is an example of a huffman tree'
         data = bytearray(data, 'ASCII')
         tree = self.compressor.construct_tree(data)
-        encode = []
-        self.compressor.encode_tree(encode, tree)
+        encode = self.compressor.tree_encoder.encode_tree(tree)
         encode.pop(0)
         decode_tree = Node(None, None, None)
-        self.compressor.decode_tree(encode, decode_tree)
+        self.compressor.tree_encoder.decode_tree(encode, decode_tree)
         dictionary_original = [0] * 256
         dictionary_decode = [0] * 256
         self.compressor.tree_to_dictionary(dictionary_original, '0', tree)
@@ -46,15 +45,14 @@ class RunLengthEncodingTests(CompressionTestCase):
     def test_encode_tree(self):
         root = Node(Node(Node(None, None, 71), Node(None, None, 72), None), None, None)
         root.print_tree(0)
-        encode = []
-        self.compressor.encode_tree(encode, root)
+        encode = self.compressor.tree_encoder.encode_tree(root)
         self.assertListEqual(encode, [0, 0, 1, 71, 1, 72])
 
     def test_decode_tree(self):
         encoded = [0, 0, 1, 71, 1, 72]
         root = Node(None, None, None)
         encoded.pop(0)
-        self.compressor.decode_tree(encoded, root)
+        self.compressor.tree_encoder.decode_tree(encoded, root)
         root.print_tree(0)
         self.assertEqual(root.left.left.data, 71)
         self.assertEqual(root.left.right.data, 72)

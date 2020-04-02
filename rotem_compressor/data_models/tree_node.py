@@ -1,6 +1,7 @@
 LEAF_SYMBOL = 1
 NONLEAF_SYMBOL = 0
 
+
 class Node:
     def __init__(self, left, right, data):
         self.left = left
