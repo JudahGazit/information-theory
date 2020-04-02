@@ -5,7 +5,10 @@ from rotem_compressor.lzw import LZW
 
 
 class RotemCompressor(ICompressor):
-    compressions = [LZW(2 ** 12, raw_values=True), Huffman(2 ** 12)]
+    compressions = [
+        LZW(2 ** 20, raw_values=True),
+        Huffman(256),
+    ]
 
     def compress(self, data):
         for compression in self.compressions:
