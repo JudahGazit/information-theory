@@ -43,16 +43,18 @@ class WordsEncoder(ICompressor):
     def __decode_words(self, compressed, length):
         words = []
         for i in range(length):
-            words.append(chr(compressed.pop()))
-        words = ''.join(words).split('\0')
+            words.append(compressed.pop())
+        words = Huffman().decompress(words)
+        words = ''.join(map(chr, words)).split('\0')
         return words
 
     def __compress_payload(self, data, words):
         huffman = Huffman(2 ** math.ceil(math.log2(len(words)))).compress(data)
         words_prefix = '\0'.join(words)
+        huffman_prefix = Huffman().compress(bytearray(map(ord, words_prefix)))
         compressed = BitStack([])
-        compressed.append_natural_number(len(words_prefix))
-        compressed += BitStack(map(ord, words_prefix))
+        compressed.append_natural_number(len(huffman_prefix))
+        compressed += BitStack(huffman_prefix)
         compressed += BitStack(huffman)
         return compressed.to_numbers()
 
