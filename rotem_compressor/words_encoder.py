@@ -45,14 +45,14 @@ class WordsEncoder(ICompressor):
         words = []
         for i in range(length):
             words.append(compressed.pop())
-        decompressed_words = LZW(raw_values=False).decompress(words)
+        decompressed_words = LZW(2 ** 14, raw_values=False).decompress(words)
         decompressed_words = ''.join(map(chr, decompressed_words)).split('\0')
         return decompressed_words
 
     def __compress_payload(self, data, words):
         huffman = Huffman(2 ** math.ceil(math.log2(len(words)))).compress(data)
         words_prefix = '\0'.join(words)
-        compressed_prefix = LZW(raw_values=False).compress(bytearray(map(ord, words_prefix)))
+        compressed_prefix = LZW(2 ** 14, raw_values=False).compress(bytearray(map(ord, words_prefix)))
         compressed = BitStack([])
         compressed.append_natural_number(len(compressed_prefix))
         compressed += BitStack(compressed_prefix)
