@@ -1,8 +1,13 @@
 from rotem_compressor.contract.ICompressor import ICompressor
+from rotem_compressor.utils import to_bytearray
 
 
 class RunLengthEncoding(ICompressor):
+    def __init__(self, threshold):
+        self.threshold = threshold
+
     def compress(self, data):
+        data = []
         result = []
         last_char = None
         char_counter = 0
@@ -17,6 +22,17 @@ class RunLengthEncoding(ICompressor):
                 char_counter = 1
         result.append(char_counter)
         result.append(last_char)
+        return self.represent_result(result)
+
+    def represent_result(self, compressed):
+        result = []
+        for i in range(0, len(compressed), 2):
+            amount, char = compressed[i], compressed[i + 1]
+            if amount >= self.threshold:
+                result.extend(self.threshold * [char])
+                result.append(amount)
+            else:
+                result.extend(amount * [char])
         return bytearray(result)
 
     def decompress(self, compressed):
@@ -24,4 +40,5 @@ class RunLengthEncoding(ICompressor):
         for i in range(0, len(compressed), 2):
             amount, char = compressed[i], compressed[i + 1]
             result.extend(amount * [char])
-        return bytearray(result)
+        return to_bytearray(result)
+

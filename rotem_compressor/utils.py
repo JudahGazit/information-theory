@@ -1,27 +1,19 @@
 def to_bytearray(values):
     byte_array = []
+    max_int = 0
     if isinstance(values, bytearray):
         return values
     for item in values:
         if isinstance(item, str):
             for c in item:
-                byte_array.extend(ord(c).to_bytes(2, 'big'))
+                byte_array.append(ord(c))
+                max_int = max_int if max_int > ord(c) else ord(c)
         else:
-            byte_array.extend(item.to_bytes(2, 'big'))
+            byte_array.append(item)
+            max_int = max_int if max_int > item else item
+    if max_int > 256:
+        return byte_array
     return bytearray(byte_array)
-
-
-def from_bytearray(values, as_string=True):
-    result = []
-    for index in range(0, len(values), 2):
-        first, second = values[index:index + 2]
-        first = first if isinstance(first, int) else ord(first)
-        second = second if isinstance(second, int) else ord(second)
-        value = int.from_bytes([first, second], 'big')
-        value = chr(value) if as_string else value
-        result.append(value)
-    result = bytearray(map(ord, result))
-    return result
 
 
 def bits_to_numbers(bits):

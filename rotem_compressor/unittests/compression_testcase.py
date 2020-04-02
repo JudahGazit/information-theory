@@ -1,7 +1,5 @@
 import unittest
 
-from rotem_compressor.utils import from_bytearray
-
 
 class CompressionTestCase(unittest.TestCase):
     compressor = None
@@ -14,4 +12,4 @@ class CompressionTestCase(unittest.TestCase):
         if self.compressor:
             compression = self.compressor.compress(self.data)
             decompression = self.compressor.decompress(compression)
-            self.assertEqual(self.data, from_bytearray(decompression))
+            self.assertEqual(self.data, decompression)

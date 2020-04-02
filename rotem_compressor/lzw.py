@@ -13,7 +13,7 @@ class LZW(ICompressor):
         self.raw_values = raw_values
 
     def __add_code_to_dictionary(self, dictionary, combined_symbols, inv_dict=False):
-        if len(dictionary) <= self.maximum_table_size:
+        if len(dictionary) < self.maximum_table_size:
             if inv_dict:
                 dictionary[len(dictionary)] = combined_symbols
             else:

@@ -1,9 +1,5 @@
-import zipfile
-
 from rotem_compressor.lzw import LZW
-from rotem_compressor.rotem_compressor import RotemCompressor
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
-from rotem_compressor.utils import to_bytearray, from_bytearray
 
 
 class LZWTests(CompressionTestCase):
@@ -19,10 +15,10 @@ class LZWTests(CompressionTestCase):
         expected_result = 'aabaaba'
         compressed = [ord('a'), ord('a'), ord('b'), 256, 258]
         decompressed = self.compressor.decompress(compressed)
-        self.assertEqual(bytearray(expected_result, 'ASCII'), from_bytearray(decompressed))
+        self.assertEqual(bytearray(expected_result, 'ASCII'), decompressed)
 
     def test_compression_decompression_of_reacurring(self):
         text = 'B-u-u-ust B-u-u-ust'
         compressed = self.compressor.compress(bytearray(text, 'ASCII'))
         decompressed = self.compressor.decompress(compressed)
-        self.assertEqual(bytearray(text, 'ASCII'), from_bytearray(decompressed))
+        self.assertEqual(bytearray(text, 'ASCII'), decompressed)

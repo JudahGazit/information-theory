@@ -1,10 +1,9 @@
-from pprint import pprint
-
 from rotem_compressor.contract.ICompressor import ICompressor
+from rotem_compressor.utils import to_bytearray
 
 BEGIN_CHAR = 0
 END_CHAR = 255
-CHUNK_SIZE = 10000
+CHUNK_SIZE = 1000
 
 
 class BurrowsWheelerTransform(ICompressor):
@@ -25,7 +24,7 @@ class BurrowsWheelerTransform(ICompressor):
         result = []
         for chunk in self.chunk(compressed, self.chunk_size + 2):
             result.extend(self.decompress_chunk(chunk))
-        return bytearray(result)
+        return to_bytearray(result)
 
     def compress_chunk(self, data):
         data = list(data)

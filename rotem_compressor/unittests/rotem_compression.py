@@ -2,7 +2,6 @@ import zipfile
 
 from rotem_compressor.rotem_compressor import RotemCompressor
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
-from rotem_compressor.utils import to_bytearray
 
 
 class RotemCompressionTests(CompressionTestCase):

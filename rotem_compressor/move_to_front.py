@@ -1,4 +1,5 @@
 from rotem_compressor.contract.ICompressor import ICompressor
+from rotem_compressor.utils import to_bytearray
 
 ZERO_ALIAS = 254
 
@@ -48,4 +49,4 @@ class MoveToFront(ICompressor):
                 continue
             dictionary.pop(index)
             dictionary.insert(0, char)
-        return bytearray(result)
+        return to_bytearray(result)
