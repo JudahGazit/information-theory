@@ -19,10 +19,10 @@ class LZWTests(CompressionTestCase):
         expected_result = 'aabaaba'
         compressed = [ord('a'), ord('a'), ord('b'), 256, 258]
         decompressed = self.compressor.decompress(compressed)
-        self.assertEqual(expected_result, ''.join(from_bytearray(decompressed)))
+        self.assertEqual(bytearray(expected_result, 'ASCII'), from_bytearray(decompressed))
 
     def test_compression_decompression_of_reacurring(self):
         text = 'B-u-u-ust B-u-u-ust'
         compressed = self.compressor.compress(bytearray(text, 'ASCII'))
         decompressed = self.compressor.decompress(compressed)
-        self.assertEqual(text, ''.join(from_bytearray(decompressed)))
+        self.assertEqual(bytearray(text, 'ASCII'), from_bytearray(decompressed))

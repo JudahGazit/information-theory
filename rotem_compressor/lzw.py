@@ -55,14 +55,12 @@ class LZW(ICompressor):
 
     def __decompress_bits(self, compressed, dictionary_inv, dictionary, prev_symbols):
         decompressed = []
-        i = 0
         stack = BitList(compressed)
         code_width = 8
         while len(stack) >= code_width:
-            code_width = math.ceil(math.log2(2 ** 8 + i))
+            code_width = math.ceil(math.log2(2 ** 8 + len(decompressed)))
             code = stack.pop(code_width)
             prev_symbols = self.__decode_symbol(code, decompressed, dictionary, dictionary_inv, prev_symbols)
-            i += 1
         return decompressed
 
     def __decode_symbol(self, code, decompressed, dictionary, dictionary_inv, prev_symbols):

@@ -19,6 +19,4 @@ class RotemCompressor(ICompressor):
     def decompress(self, compressed):
         for compression in self.compressions[::-1]:
             compressed = compression.decompress(compressed)
-        compressed = ''.join(from_bytearray(compressed))
-        compressed = bytearray(map(ord, compressed))
         return compressed

@@ -19,6 +19,7 @@ def from_bytearray(values, as_string=True):
         value = int.from_bytes([first, second], 'big')
         value = chr(value) if as_string else value
         result.append(value)
+    result = bytearray(map(ord, result))
     return result
 
 
