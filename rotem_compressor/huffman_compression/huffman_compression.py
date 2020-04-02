@@ -1,34 +1,9 @@
-from rotem_compressor.contract.ICompressor import ICompressor
 import queue
 
-from rotem_compressor.utils import bits_to_numbers, to_bytearray
-
-LEAF_SYMBOL = 1
-NONLEAF_SYMBOL = 0
-
-
-def encode_number(n):
-    number_bin = n if isinstance(n, str) else f'{n:b}'
-    log_number_bin = f'{len(number_bin):b}'
-    prefix = '1' * len(log_number_bin)
-    prefix += '0' + log_number_bin
-    return prefix + number_bin
-
-
-def pop_number(bts):
-    size = 0
-    number_size = ''
-    number = ''
-    while bts[0] == '1':
-        bts.pop(0)
-        size += 1
-    bts.pop(0)
-    for _ in range(size):
-        number_size += str(bts.pop(0))
-    number_size = int(number_size, 2)
-    for _ in range(number_size):
-        number += str(bts.pop(0))
-    return int(number, 2)
+from rotem_compressor.contract.ICompressor import ICompressor
+from rotem_compressor.data_models.bit_stack import BitStack
+from rotem_compressor.huffman_compression.graph_node import Node, NONLEAF_SYMBOL, LEAF_SYMBOL
+from rotem_compressor.utils import number_prefix_code, bits_to_numbers, to_bytearray
 
 
 class Huffman(ICompressor):
@@ -36,43 +11,40 @@ class Huffman(ICompressor):
         self.dictionary_size = dictionary_size
 
     def compress(self, data):
-        result = ''
+        payload = ''
         root = self.construct_tree(data)
         dictionary = [None] * self.dictionary_size
         self.tree_to_dictionary(dictionary, '', root)
         for char in data:
-            result += dictionary[char]
-        encode_tree = []
-        self.encode_tree(encode_tree, root)
-        result_prefix = encode_number(len(data))
-        result_prefix += encode_number(len(encode_tree))
-        result_prefix += ''.join([encode_number(n or 0) for n in encode_tree])
-        result = result_prefix + result
+            payload += dictionary[char]
+        result = self.__build_result(data, root, payload)
         return bits_to_numbers(result)
 
+    def __build_result(self, data, root, result):
+        encode_tree = []
+        self.encode_tree(encode_tree, root)
+        result_prefix = number_prefix_code(len(data))
+        result_prefix += number_prefix_code(len(encode_tree))
+        result_prefix += ''.join([number_prefix_code(n or 0) for n in encode_tree])
+        result = result_prefix + result
+        return result
+
     def decompress(self, compressed):
-        compressed = list(''.join([bin(x)[2:].zfill(8) for x in compressed]))
-        len_data = pop_number(compressed)
         result = []
+        compressed = BitStack(compressed)
+        data_length = compressed.pop_natural_number()
         dictionary = self.decode_dictionary(compressed)
-        inverse_dictionary = {}
-        for char, code in enumerate(dictionary):
-            inverse_dictionary[code] = char
-        char = ''
-        compressed = compressed[::-1]
-        while len(result) < len_data:
-            char += compressed.pop()
-            value = inverse_dictionary.get(char)
-            if value:
-                result.append(value)
-                char = ''
-        return bytearray(to_bytearray(result))
+        inverse_dictionary = {code: char for char, code in enumerate(dictionary)}
+        while len(result) < data_length and len(compressed) > 0:
+            popped = compressed.pop_prefix_code(inverse_dictionary)
+            result.append(popped)
+        return to_bytearray(result)
 
     def decode_dictionary(self, compressed):
-        encode_size = pop_number(compressed)
+        encode_size = compressed.pop_natural_number()
         encode_tree = []
         for i in range(encode_size):
-            encode_tree.append(pop_number(compressed))
+            encode_tree.append(compressed.pop_natural_number())
         encode_tree.pop(0)
         decode_tree = Node(None, None, None)
         self.decode_tree(encode_tree, decode_tree)
@@ -134,24 +106,3 @@ class Huffman(ICompressor):
                 dictionary[tree.data] = prefix
             self.tree_to_dictionary(dictionary, prefix + '0', tree.left)
             self.tree_to_dictionary(dictionary, prefix + '1', tree.right)
-
-
-class Node:
-    def __init__(self, left, right, data):
-        self.left = left
-        self.right = right
-        self.data = data
-
-    def __lt__(self, other):
-        return self.data is not None and other.data is not None and self.data < other.data
-
-    def print_tree(self, space, space_jump=10):
-        space += space_jump
-        if self.right:
-            self.right.print_tree(space)
-        print()
-        for i in range(space_jump, space):
-            print(end=" ")
-        print(chr(self.data) if self.data else None)
-        if self.left:
-            self.left.print_tree(space)
