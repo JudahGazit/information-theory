@@ -7,14 +7,14 @@ class TreeBuilder:
     def __init__(self, dictionary_size):
         self.dictionary_size = dictionary_size
 
-    def get_frequencies(self, data):
+    def _get_frequencies(self, data):
         frequencies = [0] * self.dictionary_size
         for char in data:
             frequencies[char] += 1
         return frequencies
 
     def construct_tree(self, data):
-        frequencies = self.get_frequencies(data)
+        frequencies = self._get_frequencies(data)
         priority_queue = queue.PriorityQueue()
         for char, frequency in enumerate(frequencies):
             if frequency > 0:

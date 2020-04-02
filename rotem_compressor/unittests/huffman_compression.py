@@ -10,7 +10,7 @@ class HuffmanTests(CompressionTestCase):
     def test_get_frequencies(self):
         data = 'hello world'
         data = bytearray(data, 'ASCII')
-        frequencies = self.compressor.tree_builder.get_frequencies(data)
+        frequencies = self.compressor.tree_builder._get_frequencies(data)
         self.assertEqual(frequencies[ord('l')], 3)
         self.assertEqual(frequencies[ord('e')], 1)
         self.assertEqual(frequencies[ord(' ')], 1)
@@ -35,7 +35,7 @@ class HuffmanTests(CompressionTestCase):
         encode = self.compressor.tree_encoder.encode_tree(tree)
         encode.pop(0)
         decode_tree = Node(None, None, None)
-        self.compressor.tree_encoder.__construct_tree_from_list(encode, decode_tree)
+        self.compressor.tree_encoder._construct_tree_from_list(encode, decode_tree)
         dictionary_original = Dictionary(256, tree)
         dictionary_decode = Dictionary(256, decode_tree)
         self.assertListEqual(dictionary_original.data, dictionary_decode.data)
@@ -50,7 +50,7 @@ class HuffmanTests(CompressionTestCase):
         encoded = [0, 0, 1, 71, 1, 72]
         root = Node(None, None, None)
         encoded.pop(0)
-        self.compressor.tree_encoder.__construct_tree_from_list(encoded, root)
+        self.compressor.tree_encoder._construct_tree_from_list(encoded, root)
         root.print_tree(0)
         self.assertEqual(root.left.left.data, 71)
         self.assertEqual(root.left.right.data, 72)

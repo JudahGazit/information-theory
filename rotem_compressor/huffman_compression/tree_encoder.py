@@ -11,9 +11,31 @@ def decode_node(encode):
 
 
 class TreeEncoder:
+    def _encode_tree_recursive(self, encode, tree):
+        if tree:
+            if tree.left is None and tree.right is None:
+                encode.append(LEAF_SYMBOL)
+                encode.append(tree.data)
+            else:
+                encode.append(NONLEAF_SYMBOL)
+            self._encode_tree_recursive(encode, tree.left)
+            self._encode_tree_recursive(encode, tree.right)
+
+    def _construct_tree_from_list(self, encode, tree):
+        if tree.left is None and len(encode):
+            current, new_node = decode_node(encode)
+            tree.left = new_node
+            if current == NONLEAF_SYMBOL:
+                self._construct_tree_from_list(encode, tree.left)
+        if tree.right is None and len(encode):
+            current, new_node = decode_node(encode)
+            tree.right = new_node
+            if current == NONLEAF_SYMBOL:
+                self._construct_tree_from_list(encode, tree.right)
+
     def encode_tree(self, tree):
         encode = []
-        self.__encode_tree_recursive(encode, tree)
+        self._encode_tree_recursive(encode, tree)
         return encode
 
     def decode_tree(self, compressed):
@@ -23,28 +45,6 @@ class TreeEncoder:
             encode_tree.append(compressed.pop_natural_number())
         encode_tree.pop(0)
         decode_tree = Node(None, None, None)
-        self.__construct_tree_from_list(encode_tree, decode_tree)
+        self._construct_tree_from_list(encode_tree, decode_tree)
         return decode_tree
-
-    def __encode_tree_recursive(self, encode, tree):
-        if tree:
-            if tree.left is None and tree.right is None:
-                encode.append(LEAF_SYMBOL)
-                encode.append(tree.data)
-            else:
-                encode.append(NONLEAF_SYMBOL)
-            self.__encode_tree_recursive(encode, tree.left)
-            self.__encode_tree_recursive(encode, tree.right)
-
-    def __construct_tree_from_list(self, encode, tree):
-        if tree.left is None and len(encode):
-            current, new_node = decode_node(encode)
-            tree.left = new_node
-            if current == NONLEAF_SYMBOL:
-                self.__construct_tree_from_list(encode, tree.left)
-        if tree.right is None and len(encode):
-            current, new_node = decode_node(encode)
-            tree.right = new_node
-            if current == NONLEAF_SYMBOL:
-                self.__construct_tree_from_list(encode, tree.right)
 
