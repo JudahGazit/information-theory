@@ -3,6 +3,7 @@ import math
 from rotem_compressor.contract.ICompressor import ICompressor
 from rotem_compressor.data_models.bit_stack import BitStack
 from rotem_compressor.huffman_compression.huffman_compression import Huffman
+from rotem_compressor.lzw import LZW
 from rotem_compressor.utils import to_bytearray
 
 NEW_LINE = '\n'
@@ -44,17 +45,17 @@ class WordsEncoder(ICompressor):
         words = []
         for i in range(length):
             words.append(compressed.pop())
-        words = Huffman().decompress(words)
-        words = ''.join(map(chr, words)).split('\0')
-        return words
+        decompressed_words = LZW(raw_values=False).decompress(words)
+        decompressed_words = ''.join(map(chr, decompressed_words)).split('\0')
+        return decompressed_words
 
     def __compress_payload(self, data, words):
         huffman = Huffman(2 ** math.ceil(math.log2(len(words)))).compress(data)
         words_prefix = '\0'.join(words)
-        huffman_prefix = Huffman().compress(bytearray(map(ord, words_prefix)))
+        compressed_prefix = LZW(raw_values=False).compress(bytearray(map(ord, words_prefix)))
         compressed = BitStack([])
-        compressed.append_natural_number(len(huffman_prefix))
-        compressed += BitStack(huffman_prefix)
+        compressed.append_natural_number(len(compressed_prefix))
+        compressed += BitStack(compressed_prefix)
         compressed += BitStack(huffman)
         return compressed.to_numbers()
 
