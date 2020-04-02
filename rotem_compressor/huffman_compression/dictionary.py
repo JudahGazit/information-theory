@@ -1,6 +1,4 @@
-import queue
-
-from rotem_compressor.data_models.tree_node import Node
+from rotem_compressor.data_models.tree_node import NONLEAF_SYMBOL, LEAF_SYMBOL
 
 
 class Dictionary:
@@ -13,8 +11,8 @@ class Dictionary:
         if tree:
             if tree.left is None and tree.right is None:
                 self.data[tree.data] = prefix
-            self.construct_dictionary(tree.left, prefix + '0')
-            self.construct_dictionary(tree.right, prefix + '1')
+            self.construct_dictionary(tree.left, prefix + str(NONLEAF_SYMBOL))
+            self.construct_dictionary(tree.right, prefix + str(LEAF_SYMBOL))
 
     def __getitem__(self, item):
         return self.data[item]
