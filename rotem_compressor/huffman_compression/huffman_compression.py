@@ -3,7 +3,7 @@ import queue
 from rotem_compressor.contract.ICompressor import ICompressor
 from rotem_compressor.data_models.bit_stack import BitStack
 from rotem_compressor.huffman_compression.graph_node import Node, NONLEAF_SYMBOL, LEAF_SYMBOL
-from rotem_compressor.utils import number_prefix_code, bits_to_numbers, to_bytearray
+from rotem_compressor.utils import bits_to_numbers, to_bytearray
 
 
 class Huffman(ICompressor):
@@ -18,16 +18,18 @@ class Huffman(ICompressor):
         for char in data:
             payload += dictionary[char]
         result = self.__build_result(data, root, payload)
-        return bits_to_numbers(result)
+        return result
 
-    def __build_result(self, data, root, result):
+    def __build_result(self, data, root, payload):
+        bit_stack = BitStack([])
         encode_tree = []
         self.encode_tree(encode_tree, root)
-        result_prefix = number_prefix_code(len(data))
-        result_prefix += number_prefix_code(len(encode_tree))
-        result_prefix += ''.join([number_prefix_code(n or 0) for n in encode_tree])
-        result = result_prefix + result
-        return result
+        bit_stack.append_natural_number(len(data))
+        bit_stack.append_natural_number(len(encode_tree))
+        for n in encode_tree:
+            bit_stack.append_natural_number(n or 0)
+        bit_stack.concat(list(payload))
+        return bit_stack.to_numbers()
 
     def decompress(self, compressed):
         result = []

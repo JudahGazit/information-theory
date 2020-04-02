@@ -1,7 +1,7 @@
 import math
 
 from rotem_compressor.contract.ICompressor import ICompressor
-from rotem_compressor.data_models.bit_stack import BitList
+from rotem_compressor.data_models.bit_stack import BitStack
 from rotem_compressor.utils import *
 
 
@@ -55,7 +55,7 @@ class LZW(ICompressor):
 
     def __decompress_bits(self, compressed, dictionary_inv, dictionary, prev_symbols):
         decompressed = []
-        stack = BitList(compressed)
+        stack = BitStack(compressed)
         code_width = 8
         while len(stack) >= code_width:
             code_width = math.ceil(math.log2(2 ** 8 + len(decompressed)))

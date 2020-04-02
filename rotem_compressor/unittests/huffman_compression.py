@@ -1,4 +1,5 @@
-from rotem_compressor.huffman_compression import Huffman, Node, encode_number
+from rotem_compressor.huffman_compression.graph_node import Node
+from rotem_compressor.huffman_compression.huffman_compression import Huffman
 from rotem_compressor.unittests.compression_testcase import CompressionTestCase
 
 
