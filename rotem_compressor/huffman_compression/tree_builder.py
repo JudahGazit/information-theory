@@ -13,12 +13,15 @@ class TreeBuilder:
             frequencies[char] += 1
         return frequencies
 
-    def construct_tree(self, data):
-        frequencies = self._get_frequencies(data)
-        priority_queue = queue.PriorityQueue()
+    def __put_in_queue_by_frequency(self, frequencies, priority_queue):
         for char, frequency in enumerate(frequencies):
             if frequency > 0:
                 priority_queue.put((frequency, Node(None, None, char)))
+
+    def construct_tree(self, data):
+        frequencies = self._get_frequencies(data)
+        priority_queue = queue.PriorityQueue()
+        self.__put_in_queue_by_frequency(frequencies, priority_queue)
         while priority_queue.qsize() > 1:
             left_frequency, left = priority_queue.get()
             right_frequency, right = priority_queue.get()
