@@ -5,7 +5,7 @@ The new compression is called `Rotem Compression` or `rg compression` (my initia
 
 It utilize 4 methods, described in the attached PDF file:
 <ol>
-<li>Lempel-Ziv-Welch method</li>
+<li>Lempel-Ziv-Welch method  (the method in active use here)</li>
 <li>Huffman method</li>
 <li>Lempel-Ziv-Welch method + Huffman for encoding the results</li>
 <li>"Words Encoding" - using Huffman method to encode words instead of singular symbols</li>
