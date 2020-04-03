@@ -14,7 +14,7 @@ It utilize 4 methods, described in the attached PDF file:
 
 <h2>Project Structure</h2>
 <pre>
-├── README.md // YOU ARE HERE
+├── README.md               // YOU ARE HERE
 ├── setup.py                // standard python setup file
 ├── app.py                  // main file for the package, applying the compression on user input
 ├── rgcompress              // bash file initiating the pyton app.py
