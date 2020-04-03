@@ -15,11 +15,14 @@ It utilize 4 methods, described in the attached PDF file:
 <h2>Project Structure</h2>
 <pre>
 ├── README.md               // YOU ARE HERE
+├── information.pdf         // the PDF paper explaining the project
 ├── setup.py                // standard python setup file
 ├── app.py                  // main file for the package, applying the compression on user input
 ├── rgcompress              // bash file initiating the pyton app.py
 ├── test                    
-|   └──                     // contains demos for input file, zip compression and rg compression
+|   └── ...                 // contains demos for input file, zip compression and rg compression
+├── latex                    
+|   └── ...                 // contains raw lyx files used for making the pdf file
 └── rotem_compressor
     ├── contract
     │   └── ...             // python interfaces for the compression methods
