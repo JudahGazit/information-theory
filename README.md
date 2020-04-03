@@ -38,11 +38,11 @@ It utilize 4 methods, described in the attached PDF file:
 
 <h2>Usage:</h2>
 
-<b>for compression</b>:
+<b>for compression:</b>
 `rgcompress -i <inputFile> -o <outputFile>`<br>
 or `python app.py -i <inputFile> -o <outputFile>`
 
 
-for decompression: 
+<b>for decompression:</b> 
  `rgcompress -d -i <inputFile> -o <outputFile>`<br>
 or `python app.py -d -i <inputFile> -o <outputFile>`
