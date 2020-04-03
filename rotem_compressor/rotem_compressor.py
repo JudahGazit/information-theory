@@ -11,7 +11,7 @@ class RotemCompressor(ICompressor):
     ]
     # compressions = [
     #     LZW(2 ** 20, raw_values=True),
-    #     # Huffman?(2 ** 16),
+    #     # Huffman(2 ** 16),
     # ]
     # compressions = [
     #     WordsEncoder()
