@@ -30,7 +30,7 @@ It utilize 4 methods, described in the attached PDF file:
     ├── lzw.py
     ├── words_encoder.py
     ├── utils.py            // utilities used by the the compression methods 
-    ├── rotem_compressor.py // the main compressor, applying multiple compressions in a row
+    ├── rotem_compressor.py // the main compressor, applying multiple compressions on top of each other
     └── unittests
         └── ...             // unittests for the entire project 
 
