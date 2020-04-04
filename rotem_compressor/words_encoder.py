@@ -23,7 +23,7 @@ class WordsEncoder(ICompressor):
             if char not in DELIMITERS:
                 word += char
             else:
-                if len(word):
+                if word != '':
                     result.append(word)
                 result.append(char)
                 word = ''
