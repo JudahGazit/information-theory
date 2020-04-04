@@ -10,6 +10,10 @@ DELIMITERS = '.,;:\'"?!(){}\[\]&#/_\{\}*`@~<>\\+ \n-'
 
 
 class WordsEncoder(ICompressor):
+    def __init__(self, maximum_table_size=2 ** 14):
+        self.maximum_table_size = maximum_table_size
+        self.lzw_compressor = LZW(self.maximum_table_size, raw_values=False)
+
     def __replace_words_with_indexes(self, data, words):
         words = {w: i + 1 for i, w in enumerate(words)}
         result = self.__split_text_to_words_and_delimiters(data)
@@ -41,14 +45,14 @@ class WordsEncoder(ICompressor):
         words = []
         for i in range(length):
             words.append(compressed.pop())
-        decompressed_words = LZW(2 ** 14, raw_values=False).decompress(words)
+        decompressed_words = self.lzw_compressor.decompress(words)
         decompressed_words = ''.join(map(chr, decompressed_words)).split('\0')
         return decompressed_words
 
     def __compress_payload(self, data, words):
         huffman = Huffman(2 ** math.ceil(math.log2(len(words)))).compress(data)
         words_prefix = '\0'.join(words)
-        compressed_prefix = LZW(2 ** 14, raw_values=False).compress(bytearray(map(ord, words_prefix)))
+        compressed_prefix = self.lzw_compressor.compress(bytearray(map(ord, words_prefix)))
         compressed = BitStack([])
         compressed.append_natural_number(len(compressed_prefix))
         compressed += BitStack(compressed_prefix)
