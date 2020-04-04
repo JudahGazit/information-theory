@@ -6,10 +6,7 @@ from rotem_compressor.huffman_compression.huffman_compression import Huffman
 from rotem_compressor.lzw import LZW
 from rotem_compressor.utils import to_bytearray
 
-NEW_LINE = '\n'
-SPACE = ' '
-SPACES = ''.join([NEW_LINE, SPACE])
-DELIMITERS = '.,;:\'"?!(){}\[\]&#/_\{\}*`@~<>\\+-'
+DELIMITERS = '.,;:\'"?!(){}\[\]&#/_\{\}*`@~<>\\+ \n-'
 
 
 class WordsEncoder(ICompressor):
@@ -23,22 +20,21 @@ class WordsEncoder(ICompressor):
         result = []
         word = ''
         for char in data:
-            if char not in SPACES + DELIMITERS:
+            if char not in DELIMITERS:
                 word += char
             else:
-                result.extend([word, char])
+                if len(word):
+                    result.append(word)
+                result.append(char)
                 word = ''
         if word != '':
             result.append(word)
         return result
 
     def __distinct_words_from_data(self, data):
-        words = []
-        rows = data.split(NEW_LINE)
-        for row in rows:
-            words.extend(re.sub(f'[{DELIMITERS}]', SPACE, row).split(SPACE))
+        words = re.sub(f'[{DELIMITERS}]+', ' ', data).split(' ')
         words = list(set(words))
-        words = list(SPACES + DELIMITERS) + words
+        words = list(DELIMITERS) + words
         return words
 
     def __decode_words(self, compressed, length):
