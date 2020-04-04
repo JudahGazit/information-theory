@@ -24,16 +24,20 @@ class WordsEncoder(ICompressor):
         result = []
         word = ''
         for char in data:
-            if char not in DELIMITERS:
-                word += char
-            else:
-                if word != '':
-                    result.append(word)
-                result.append(char)
-                word = ''
+            word = self.__add_if_end_of_word(char, result, word)
         if word != '':
             result.append(word)
         return result
+
+    def __add_if_end_of_word(self, char, result, word):
+        if char not in DELIMITERS:
+            word += char
+        else:
+            if word != '':
+                result.append(word)
+            result.append(char)
+            word = ''
+        return word
 
     def __distinct_words_from_data(self, data):
         words = re.sub(f'[{DELIMITERS}]+', ' ', data).split(' ')
