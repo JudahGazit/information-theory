@@ -1029,7 +1029,8 @@ BitStack
 \begin_inset Formula $n$
 \end_inset
 
- הביטים הראשונים מתוך המחרוזת(, ו
+ הביטים הראשונים מתוך המחרוזת, או לדחוף מספר למחרוזת בתור קידוד רישא שלו
+ כמספר טבעי(, ו
 \family default
 \series default
 \shape default
@@ -3738,7 +3739,7 @@ Hooper
 \end_inset
 
 ב הוא ככמות המילים.
- הוסף את התוצאה של האפמן למחרוזת הסופית.
+ הוסף את התוצאה של האפמן למדחרוזת הסופית.
 \end_layout
 
 \begin_layout Standard
@@ -3747,9 +3748,79 @@ Hooper
 \end_layout
 
 \begin_layout Standard
-השיטה הזו מאוד פשוטה אך עם זאת נתנה תוצאות טובות באופן שהפתיע אותי מאוד
- - למרות שהיא צריכה למעשה לשמור את המילים המקוריות פעם אחת, היא הצליחה לדחוס
- את הקובץ טוב יותר מ
+ייעול משמעותי שאפשר לעשות הוא לדחוס את רשימת המילים בנפרד - ע
+\begin_inset Quotes erd
+\end_inset
+
+י האפמן או שיטה אחרת, זאת כדי לחסוך את הכתיבה המלאה שלהן בתחילת התהליך.
+ אני ביצעתי זאת עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\lang hebrew
+.
+ 
+\end_layout
+
+\begin_layout Standard
+הקוד של השיטה הזו נמצא בקובץ 
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/words_encoder.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/words_encoder.py"
+literal "false"
+
+\end_inset
+
+.
+ החלק המורכב ביותר בו
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "__split_text_to_words_and_delimiters"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/words_encoder.py#L23-L30"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ הוא החלק של החלפת המילים והסימנים באינדקס המייצג אותן.
+\end_layout
+
+\begin_layout Standard
+השיטה הזו מאוד פשוטה אך עם זאת נתנה תוצאות טובות באופן שהפתיע אותי מאוד,
+ והצליחה לדחוס את הקובץ טוב יותר מ
 \lang english
 ZIP
 \lang hebrew
@@ -3759,6 +3830,1129 @@ ZIP
 
 \begin_layout Section
 השוואה בין השיטות
+\end_layout
+
+\begin_layout Standard
+אתחיל בכך ששלושת השיטות הצליחו להגיע )עם פרמטרים מסוימים( לתוצאות טובות
+ משמעותית מול
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ZIP
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- ואף הגיעו להפרשים של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+2MB
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואף יותר.
+ עם זאת - צריך להיות עדינים ולהבין מתי זה קרה: האם רק כשהקובץ היה 
+\begin_inset Quotes eld
+\end_inset
+
+ארוך מספיק
+\begin_inset Quotes erd
+\end_inset
+
+? האם רק כשגודל המילון ש
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+יצר היה ענקי?
+\begin_inset Newline newline
+\end_inset
+
+המטרה של הפרק הזה היא לבצע השוואה מסודרת בין השיטות.
+\end_layout
+
+\begin_layout Standard
+נשווה תחילה בין השיטות בפרמטרים שונים של 
+\begin_inset Formula $m$
+\end_inset
+
+ - גודל הא
+\begin_inset Quotes erd
+\end_inset
+
+ב המקסימלי ש
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+החזיק בכל אחד מהן.
+ נזכיר - 
+\end_layout
+
+\begin_layout Enumerate
+השיטה הראשונה משתמשת ב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+כולל קידוד באורכים משתנים
+\end_layout
+
+\begin_layout Enumerate
+השיטה השנייה מפעילה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואת התוצאות מעבירה דרך האפמן
+\end_layout
+
+\begin_layout Enumerate
+השיטה השלישית מייצרת רשימת מילים ייחודיות בטקסט, מקודדת עם האפמן את הטקסט
+ שבו החלפנו מילים באינדקסים שלהן, ומקודדת עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+את רשימת המילים.
+\end_layout
+
+\begin_layout Standard
+התרשים הבא מציג את גדלי הקבצים בכל אחת מהשיטות, כתלות ב
+\begin_inset Formula $m$
+\end_inset
+
+ גודל המילון.
+ ציר 
+\begin_inset Formula $x$
+\end_inset
+
+ מציג 
+\begin_inset Formula $log_{2}(m)$
+\end_inset
+
+ וציר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+y
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מציג את גודל הקובץ ב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+MB
+\lang hebrew
+.
+\begin_inset Newline newline
+\end_inset
+
+הטווח הצבוע באדום הוא טווח הגדלים שקובץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ZIP
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מחזיר )ניתן לבחור את איכות הדחיסה כמעט בכל תכנה(
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename size_by_m.png
+	lyxscale 45
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ניתן ללמוד מספר דברים מעניינים מהנתונים:
+\end_layout
+
+\begin_layout Enumerate
+השיטה הטובה ביותר שנבדקה היא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עם קידוד באורכים משתנים, כאשר גודל המילון גדול מ
+\begin_inset Formula $2^{20}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+שיטת קידוד מילים כמעט ולא מושפעת מגודל המילון, זאת בגלל שהטקסט שמקודד עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הוא ככל הנראה קצר מאוד )רק
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+50
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אלף מילים(
+\end_layout
+
+\begin_layout Enumerate
+שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ עם 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נפגעת כשגודל המילון גדול מידי - ככל הנראה בגלל שגודל העץ הופך להיות גדול
+ מאוד ולכן הקידוד שלו תופס נפח רב.
+\end_layout
+
+\begin_layout Standard
+כדי לאשש את הטענה השלישית, נחזור על הניסוי שוב, אבל הפעם נשמור את התוצאה
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ללא קידוד העץ )כמובן שזו דחיסה שלא ניתנת לשחזור(.
+ התרשים הבא מציג את גודל הקובץ בשיטה מספר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+, בחלוקה למידע עצמו ולעץ הקידוד שלו.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename huffman_tree_portion.png
+	lyxscale 45
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+אפשר לראות שכשהמילון גדול מידי - חצי מהביטים בתוצאה הדחוסה הם הייצוג של
+ הקידוד של העץ שלו.
+\end_layout
+
+\begin_layout Standard
+כעת נתמקד ב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\lang hebrew
+.
+ ניקח 
+\begin_inset Formula $m=2^{20}$
+\end_inset
+
+, ונבחן 
+\series bold
+מתי
+\series default
+ אנחנו מתחילים לראות הפרש בינו לבין
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ZIP
+\lang hebrew
+.
+ כלומר, לאחר כמה תווים מתוך הקובץ שלנו נוצר הפער.
+ נסמן את מספר התווים שאנחנו דוחסים בכל פעם ב 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ ציר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+y
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מציג את יחס הדחיסה )
+\begin_inset Formula $\frac{\text{compressed}}{N}$
+\end_inset
+
+(.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lzw_zip_n.png
+	lyxscale 45
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+מהתרשים אפשר לראות שרק כאשר דחסנו יותר מ 
+\begin_inset Formula $2^{21}$
+\end_inset
+
+ בתים מתחיל להיות הפרש בגודל הקובץ לטובת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\lang hebrew
+.
 \end_layout
 
 \begin_layout Section
