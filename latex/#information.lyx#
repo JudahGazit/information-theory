@@ -1,0 +1,2552 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+%%% Set Hebrew and English fonts
+\setmonofont[Script=Hebrew]{Miriam Mono CLM}
+\newfontfamily{\englishfont}[Ligatures=TeX]{TeX Gyre Pagella}
+%\newfontfamily{\englishfont}[Ligatures=TeX]{Latin Modern Roman}
+% Proper font size in math mode.
+\setmathrm[Ligatures=TeX]{Latin Modern Math}
+
+%%% Another way is to set just the Hebrew fonts:
+%\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+%\newfontfamily\hebrewfonttt[Script=Hebrew]{Miriam Mono CLM}
+%\newfontfamily\hebrewfontsf[Script=Hebrew]{Simple CLM}
+% consider using \usepackage{iffont}
+
+%%% Sets both header and footer
+\fancyhf{} % sets to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\textup{\thepage}}
+
+\renewcommand*{\refname}{Bibliography}
+
+%%% Some alternative styles
+\ifcsname question\endcsname
+  \theoremstyle{definition}
+  \newtheorem{quesh}[thm]{שאלה}
+  \renewenvironment{question}{\begin{quesh}}{\end{quesh}}
+\else
+\fi
+\ifcsname sol*\endcsname
+  \theoremstyle{remark}
+  \newtheorem*{emphsol*}{פתרון}
+  \renewenvironment{sol*}{\begin{emphsol*}}{\end{emphsol*}}
+\else
+\fi
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "David CLM"
+\font_sans "default" "Hadasim CLM"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format pdf4
+\output_sync 1
+\output_sync_macro "\synctex=1"
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.79in
+\topmargin 0.79in
+\rightmargin 0.79in
+\bottommargin 0.79in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\bullet 0 2 5 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+עבודת גמר - תורת האינפורמציה 
+\lang english
+88-782
+\end_layout
+
+\begin_layout Author
+מגיש: רותם גזית, ת
+\begin_inset Quotes erd
+\end_inset
+
+ז
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+318446697
+\end_layout
+
+\begin_layout Date
+סמסטר חורף
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2020
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+הקדמה
+\end_layout
+
+\begin_layout Standard
+מטרת הפרויקט הייתה לממש שיטת דחיסת נתונים ללא איבוד מידע )
+\noun on
+\lang english
+lossless compression
+\noun default
+\lang hebrew
+( שתגיע להישג טוב יותר מ
+\lang english
+ZIP
+\lang hebrew
+.
+ במהלך הפיתוח ניסיתי מספר לא קטן של שיטות, וחלקן באמת הצליחו לפתור את האתגר,
+ אותן אציג כאן.
+\begin_inset Newline newline
+\end_inset
+
+בסוף הפרויקט אפרט בקצרה על שיטות נוספות שנבדקו לפתרון הבעיה.
+\end_layout
+
+\begin_layout Enumerate
+שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Lempel Ziv Welch (LZW)
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לדחיסה וקידוד הנתונים
+\end_layout
+
+\begin_layout Enumerate
+שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Lempel Ziv Welch
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לדחיסת הנתונים, יחד עם שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לקידוד הנתונים
+\end_layout
+
+\begin_layout Enumerate
+שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לדחיסת הקובץ, כאשר הדחיסה מתבצעת ברמת המילה )ולא ברמת התו הבודד(.
+\end_layout
+
+\begin_layout Standard
+במסמך זה אציג תחילה את כל אחת מהשיטות, אציג את המימוש שלי עבורן, ולבסוף
+ אציג השוואה בביצועים )יחס הדחיסה וזמן ריצה( בינהן ואל מול
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ZIP
+\lang hebrew
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+הנדסת תוכנה
+\end_layout
+
+\begin_layout Standard
+הפרויקט פותח בשפת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Python3.7
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואיננו מתבסס על ספריות חיצוניות )שאינן מובנות בתוך השפה(.
+\begin_inset Newline newline
+\end_inset
+
+הפרויקט נבנה באופן כזה שאוכל לבדוק בכל רגע נתון שהשיטות שפותחו אכן מצליחות
+ לדחוס ולפרוש קבצים, תוך שמירה על מודולאריות שתאפשר לי להחליף לוגיקה בכל
+ רגע נתון.
+\end_layout
+
+\begin_layout Standard
+הוגדר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Interface
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+המגדיר שיטת דחיסה -
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ICompressor
+\lang hebrew
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/contract/ICompressor.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/contract/ICompressor.py"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ כלל השיטות הן מימוש של אותו הממשק.
+ במקביל הוגדרו בדיקות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+unittests
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+החלות באופן גלובלי על כל שיטת דחיסה המוודאות שפרישה של קובץ דחוס מחזירה
+ את הקובץ המקורי
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/unittests/compression_testcase.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/unittests/compression_testcase.py"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ לכל אחת משיטות הדחיסה הוגדרו בנוסף בדיקות משל עצמו
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/unittests"
+target "https://github.com/JudahGazit/information-theory/tree/master/rotem_compressor/unittests"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+שיטת הדחיסה הסופית שאני מציג כאן נקראת 
+\begin_inset Quotes eld
+\end_inset
+
+
+\lang english
+Rotem Compression
+\lang hebrew
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/rotem_compressor.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/rotem_compressor.py"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ למעשה מדובר במחלקה היורשת מ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ICompressor
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ומחילה ברצף מספר שיטות דחיסה בזו אחר זו )ופורשת אותם בסדר ההפוך(.
+ ניתן להחליף את השיטה המוצגת בשעת ההפעלה ע
+\begin_inset Quotes erd
+\end_inset
+
+י החלפת המערך של שיטות הדחיסה
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Reference to the `compressions` list inside the class. Note the other methods are in comments."
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/rotem_compressor.py#L9-L18"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+תחת התיקייה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/data_models"
+target "https://github.com/JudahGazit/information-theory/tree/master/rotem_compressor/data_models"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+data_models
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נמצאות שתי מחלקות שמשמשות את את שיטות הדחיסה:
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/data_models/bit_stack.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/data_models/bit_stack.py"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+BitStack
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ מאפשר התייחסות לביטים עצמם המרכיבים מחרוזת )למשל, לקחת את 
+\begin_inset Formula $n$
+\end_inset
+
+ הביטים הראשונים מתוך המחרוזת(, ו
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/data_models/tree_node.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/data_models/tree_node.py"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Node
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מאפשר לבנות עצים בינאריים.
+\end_layout
+
+\begin_layout Standard
+הקובץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+app.py
+\lang hebrew
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "app.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/app.py"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ הוא הקובץ הראשי של התכנית, הוא מקבל כקלט מהמשתמש בתור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Arguments
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+את שם הקובץ לקלט ולפלט התכנית, והוא מבצע דחיסה או פרישה עם שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+RotemCompressor
+\lang hebrew
+.
+ הקובץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+rgcompress
+\lang hebrew
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "rgcompress"
+target "https://github.com/JudahGazit/information-theory/blob/master/rgcompress"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ מאפשר לבצע את הפקודות ישירות ב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+command line
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+באופן הבא:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align left
+
+\lang english
+for compression: 
+\family typewriter
+rgcompress -i <inputFile> -o <outputFile>
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+for decompression: 
+\family typewriter
+rgcompress -d -i <inputFile> -o <outputFile>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+שיטות שנוסו
+\end_layout
+
+\begin_layout Subsection
+שיטת
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\end_layout
+
+\begin_layout Standard
+שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Lempel Ziv Welch
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הוצגה בשנת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1984
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ בתור הרחבה לשיטת 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZ78
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ע
+\begin_inset Quotes erd
+\end_inset
+
+י טרי וולץ'.
+ השיטה מציגה שיפור ביצועים משמעותי לעומת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZ78
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+המקורי.
+ כמו
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZ78
+\lang hebrew
+, היא מרכיבה מילון ע
+\begin_inset Quotes erd
+\end_inset
+
+ס הצירופים שכבר נראו בדרך שאציג בהמשך.
+\begin_inset Newline newline
+\end_inset
+
+השינוי העיקרי ששיטה זו מציגה הוא בהגבלת גודל המילון )לרוב מגבילים ל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+12
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ביט(.
+ אך שמירת כלל המידע הדחוס ע
+\begin_inset Quotes erd
+\end_inset
+
+י יצוג בקודים באורך
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+12
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ ביט אינו דבר אידיאלי, ולכן השיטה מאפשרת לשמור את הקודים ב
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אורכים משתנים
+\series default
+, כלומר להגדיל את מספר הביטים בהם מיוצג המידע רק ברגע הנכון.
+\end_layout
+
+\begin_layout Standard
+אציג תחילה את האלגוריתם בצורתו הבסיסית: 
+\begin_inset Newline newline
+\end_inset
+
+נניח ויש לנו מחרוזת 
+\begin_inset Formula $S=\{s_{n}\}_{n=1}^{N}$
+\end_inset
+
+ מעל א
+\begin_inset Quotes erd
+\end_inset
+
+ב מגודל 
+\begin_inset Formula $k$
+\end_inset
+
+ .
+ נקבע את הגודל המקסימלי של המילון להיות 
+\begin_inset Formula $m>k$
+\end_inset
+
+.
+ תהי 
+\begin_inset Formula $\bar{S}$
+\end_inset
+
+ המחרוזת הדחוסה שאנחנו רוצים לבנות.
+\end_layout
+
+\begin_layout Enumerate
+אתחל מילון 
+\begin_inset Formula $D$
+\end_inset
+
+ בגודל 
+\begin_inset Formula $k$
+\end_inset
+
+ המכיל את כל התווים בא
+\begin_inset Quotes erd
+\end_inset
+
+ב.
+ 
+\begin_inset Newline newline
+\end_inset
+
+תהי הפונקציה 
+\begin_inset Formula $D(\{q_{i}\})$
+\end_inset
+
+ המחזירה את מיקומה של המחרוזת 
+\begin_inset Formula $\{q_{i}\}$
+\end_inset
+
+ בתוך המילון 
+\begin_inset Formula $D$
+\end_inset
+
+, כך ש 
+\begin_inset Formula $D(s_{i})=i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+בשלב ה 
+\begin_inset Formula $i$
+\end_inset
+
+, קח את 
+\begin_inset Formula $j$
+\end_inset
+
+ המקסימלי כך שהמחרוזת 
+\begin_inset Formula $s_{n_{i}}\dots s_{n_{i}+j}\in D$
+\end_inset
+
+.
+ נוסיף את 
+\begin_inset Formula $\bar{s}_{i}=D(s_{n_{i}}\dots s_{n_{i}+j})$
+\end_inset
+
+ למחרוזת הדחוסה שלנו.
+\end_layout
+
+\begin_layout Enumerate
+אם 
+\begin_inset Formula $|D|<m$
+\end_inset
+
+, הוסף את 
+\begin_inset Formula $s_{n_{i}}\dots s_{n_{i}+j+1}$
+\end_inset
+
+ )שאינה קיימת במילון( לתוך המילון 
+\begin_inset Formula $D$
+\end_inset
+
+ וקבע 
+\begin_inset Formula $D(s_{n_{i}}\dots s_{n_{i}+j+1})=|D|$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $|D|$
+\end_inset
+
+ כמות התווים במילון לאחר ההוספה.
+\end_layout
+
+\begin_layout Enumerate
+קבע 
+\begin_inset Formula $n_{i+1}=s_{n_{i}+j+1}$
+\end_inset
+
+.
+ אם 
+\begin_inset Formula $n_{i}+j+1\leq N$
+\end_inset
+
+, חזור לשלב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+נותר כעת להבין כיצד נייצג את המחרוזות מהא
+\begin_inset Quotes erd
+\end_inset
+
+ב המוגדל שבנינו )למעשה אנחנו הרחבנו את הא
+\begin_inset Quotes erd
+\end_inset
+
+ב להיות בגודל 
+\begin_inset Formula $m$
+\end_inset
+
+(.
+ נניח שכל תו 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ במחרוזת המקורית הוא בית )
+\begin_inset Formula $2^{8}$
+\end_inset
+
+ ביטים(.
+ אזי הגודל הראשוני של 
+\begin_inset Formula $D$
+\end_inset
+
+ יהיה 
+\begin_inset Formula $2^{8}$
+\end_inset
+
+.
+ על כן, כל תו ב
+\begin_inset Formula $D$
+\end_inset
+
+ שנוסיף בשלב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+3
+\numeric off
+, בהכרח ידרוש יותר מ 
+\begin_inset Formula $2^{8}$
+\end_inset
+
+ ביטים.
+ בעקבות כך, אינטואיטיבית היינו בוחרים לייצג כל תו ב 
+\begin_inset Formula $\bar{S}$
+\end_inset
+
+ ע
+\begin_inset Quotes erd
+\end_inset
+
+י 
+\begin_inset Formula $2^{\left\lceil log(m)\right\rceil }$
+\end_inset
+
+ תווים.
+\begin_inset Newline newline
+\end_inset
+
+שיטה זו מאוד בזבזנית, לכל תו בא
+\begin_inset Quotes erd
+\end_inset
+
+ב המקורי יהיו הרבה אפסים מובילים.
+ 
+\begin_inset Newline newline
+\end_inset
+
+שיטה 
+\begin_inset Quotes eld
+\end_inset
+
+זולה
+\begin_inset Quotes erd
+\end_inset
+
+ יותר תהיה לייצג את 
+\begin_inset Formula $\bar{s_{i}}$
+\end_inset
+
+ ע
+\begin_inset Quotes erd
+\end_inset
+
+י 
+\begin_inset Formula $2^{\left\lceil log(|D|)\right\rceil }$
+\end_inset
+
+, כלומר ע
+\begin_inset Quotes erd
+\end_inset
+
+י גודל המילון ברגע חישוב 
+\begin_inset Formula $\bar{s_{i}}$
+\end_inset
+
+.
+ כיוון שאנחנו יודעים שכל תו במחרוזת 
+\begin_inset Formula $\bar{S}$
+\end_inset
+
+ מייצג הגדלה של המילון )שכן ייצגנו את תת המחרוזת הארוכה ביותר שיכלנו באותו
+ רגע(, זה שקול ל 
+\begin_inset Formula $2^{\left\lceil log(\min\{k+i,\ m\})\right\rceil }$
+\end_inset
+
+ תווים עבור התו 
+\begin_inset Formula $\bar{s_{i}}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+באופן זה, כמות התווים הדרושה לייצוג גדלה ככל שהמילון גדל, וזה כמובן טוב
+ יותר מקביעת הגודל מקסימלי לכל המילים כבר ברגע הראשון.
+\end_layout
+
+\begin_layout Standard
+לאור אלו, ניתן לפרוש את המחרוזת ע
+\begin_inset Quotes erd
+\end_inset
+
+י:
+\end_layout
+
+\begin_layout Enumerate
+אתחול מילון 
+\begin_inset Formula $D$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+קריאת 
+\begin_inset Formula $2^{\left\lceil log(\min\{k+i,\ m\})\right\rceil }$
+\end_inset
+
+ ביטים בשלב ה 
+\begin_inset Formula $i$
+\end_inset
+
+ כדי לקבל את התו 
+\begin_inset Formula $\bar{s_{i}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+המרה 
+\begin_inset Formula $D^{-1}(\bar{s}_{i})$
+\end_inset
+
+ לערך שמאחורי הקוד ושרשור למחרוזת הפרושה )*(
+\end_layout
+
+\begin_layout Enumerate
+אם 
+\begin_inset Formula $|D|<m$
+\end_inset
+
+, הוסף למילון 
+\begin_inset Formula $D$
+\end_inset
+
+ את המחרוזת המורכבת מ 
+\begin_inset Formula $D^{-1}(\bar{s}_{i-1})D^{-1}(\bar{s}_{i})_{1}$
+\end_inset
+
+ )כלומר המחרוזת הקודמת שתרגמנו יחד עם התו הראשון מהמחרוזת החדשה(
+\end_layout
+
+\begin_layout Standard
+)*( במידה ו 
+\begin_inset Formula $D^{-1}(\bar{s}_{i})$
+\end_inset
+
+ לא קיים - זה אומר שהקוד המקורי הוא 
+\begin_inset Formula $D^{-1}(\bar{s}_{i-1})D^{-1}(\bar{s}_{i-1})_{1}$
+\end_inset
+
+, כלומר קוד שבזמן הקידוד נוצר ומיד נעשה בו שימוש - למשל המחרוזת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+aaa
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+תקודד בתור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+[a, aa]
+\lang hebrew
+, וכשנגיע לתו השני בפרישת המחרוזת - הקוד
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+aa
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עוד לא קיים.
+\end_layout
+
+\begin_layout Standard
+המימוש של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נמצא בקובץ 
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/lzw.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/lzw.py"
+literal "false"
+
+\end_inset
+
+.
+ התהליך יודע לרוץ בשני אופנים - עם הפעלת הקידוד באורך המשתנה כפי שהוצג לעיל,
+ ובלעדיו )ואז מוחזר מערך של מספרים מסוג
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+int
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מגודל קבוע של 
+\begin_inset Formula $2^{32}$
+\end_inset
+
+(.
+ ניתן לבחור ערכי 
+\begin_inset Formula $m$
+\end_inset
+
+ שונים, ובפרק
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+3
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אציג את השפעתו על איכות הדחיסה.
+\begin_inset Newline newline
+\end_inset
+
+אינטואיטיבית ברור שככל שנאפשר ל 
+\begin_inset Formula $m$
+\end_inset
+
+ להיות גדול יותר, מחרוזות יותר ארוכות יידחסו, ומצד שני ידרשו יותר תווים
+ לייצוג תווים החל משלב כלשהו )במידה וכמות התווים במחרוזת גדול(
+\end_layout
+
+\begin_layout Subsection
+שיטת
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW + Huffman
+\end_layout
+
+\begin_layout Subsection
+שיטת
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ לקידוד מילים
+\end_layout
+
+\begin_layout Section
+השוואה בין השיטות
+\end_layout
+
+\begin_layout Section
+סיכום
+\end_layout
+
+\begin_layout Subsection
+שיטות נוספות שנוסו בזמן העבודה
+\end_layout
+
+\begin_layout Subsection
+רעיונות לייעול זמני ריצה
+\end_layout
+
+\end_body
+\end_document
