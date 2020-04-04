@@ -1993,7 +1993,7 @@ LZ78
 \begin_inset Formula $2^{\left\lceil log(m)\right\rceil }$
 \end_inset
 
- תווים.
+ ביטים.
 \begin_inset Newline newline
 \end_inset
 
@@ -2054,6 +2054,7 @@ LZ78
 
 באופן זה, כמות התווים הדרושה לייצוג גדלה ככל שהמילון גדל, וזה כמובן טוב
  יותר מקביעת הגודל מקסימלי לכל המילים כבר ברגע הראשון.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2093,7 +2094,7 @@ LZ78
 \begin_inset Formula $D^{-1}(\bar{s}_{i})$
 \end_inset
 
- לערך שמאחורי הקוד ושרשור למחרוזת הפרושה )*(
+ לערך שמאחורי הקוד ושרשור למחרוזת הפרוסה )*(
 \end_layout
 
 \begin_layout Enumerate
@@ -2259,6 +2260,55 @@ aa
 \noun default
 \color inherit
 עוד לא קיים.
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+אינטואיטיבית ברור שככל שנאפשר ל 
+\begin_inset Formula $m$
+\end_inset
+
+ להיות גדול יותר, מחרוזות יותר ארוכות יידחסו לתו בודד, ומצד שני ידרשו יותר
+ ביטים לייצוג תווים החל משלב כלשהו, זאת כמובן על חשבון כמות זיכרון גדולה
+ יותר הדרושה בזמן הדחיסה והפריסה.
+ כיוון שאנחנו מייצגים כל תו בלכל היותר 
+\begin_inset Formula $2^{\left\lceil log(m)\right\rceil }$
+\end_inset
+
+ תווים, נבחר ערכי 
+\begin_inset Formula $m$
+\end_inset
+
+ מהצורה 
+\begin_inset Formula $2^{p}$
+\end_inset
+
+ )אחרת אנחנו סתם 
+\begin_inset Quotes eld
+\end_inset
+
+מפסידים
+\begin_inset Quotes erd
+\end_inset
+
+ מחרוזות שיכלנו לייצג באותה העלות(.
+\end_layout
+
+\begin_layout Standard
+שיטות נוספות לשיפור התהליך מאפשרות 
+\begin_inset Quotes eld
+\end_inset
+
+איפוס
+\begin_inset Quotes erd
+\end_inset
+
+ של המילון למצבו ההתחלתי במהלך הדרך, זאת על מנת לזהות באופן טוב יותר תבניות
+ המשתנות בקובץ.
+ שיפור כמו זה לא הכנסתי למימוש שלי.
 \end_layout
 
 \begin_layout Standard
@@ -2327,7 +2377,7 @@ literal "false"
 
 .
  התהליך יודע לרוץ בשני אופנים - עם הפעלת הקידוד באורך המשתנה כפי שהוצג לעיל,
- ובלעדיו )ואז מוחזר מערך של מספרים מסוג
+ או ובלעדיו )ואז מוחזר מערך של מספרים מסוג
 \family roman
 \series medium
 \shape up
@@ -2445,37 +2495,6 @@ int
 \noun default
 \color inherit
 אציג את השפעתו על איכות הדחיסה.
-\begin_inset Newline newline
-\end_inset
-
-אינטואיטיבית ברור שככל שנאפשר ל 
-\begin_inset Formula $m$
-\end_inset
-
- להיות גדול יותר, מחרוזות יותר ארוכות יידחסו, ומצד שני ידרשו יותר תווים
- לייצוג תווים החל משלב כלשהו )במידה והמחרוזת ארוכה מספיק(, זאת כמובן על
- חשבון כמות זיכרון גדולה יותר הדרושה בזמן הדחיסה והפריסה.
- כיוון שאנחנו מייצגים כל תו בלכל היותר 
-\begin_inset Formula $2^{\left\lceil log(m)\right\rceil }$
-\end_inset
-
- תווים, נבחר ערכי 
-\begin_inset Formula $m$
-\end_inset
-
- מהצורה 
-\begin_inset Formula $2^{p}$
-\end_inset
-
- )אחרת אנחנו סתם 
-\begin_inset Quotes eld
-\end_inset
-
-מפסידים
-\begin_inset Quotes erd
-\end_inset
-
- מחרוזות שיכלנו לייצג באותה העלות(
 \end_layout
 
 \begin_layout Subsection
@@ -2507,6 +2526,734 @@ int
 \color inherit
 \lang english
 LZW + Huffman
+\end_layout
+
+\begin_layout Standard
+השיטה השנייה אומרת את הדבר הבא: במקום להתעסק באופן קידוד התוצאות של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+חזרה לבינארי, תוך שמירה על חיסכון גדול ככל האפשר - למה שלא ניתן לאלגוריתם
+ אחר לעשות את העבודה ולמצוא את הקידוד היעיל ביותר.
+\end_layout
+
+\begin_layout Standard
+את שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+למדנו בכיתה בהרחבה: מתוך המידע שלנו, בונים עץ בינארי על סמך כמות החזרות
+ של כל תו בא
+\begin_inset Quotes erd
+\end_inset
+
+ב שלנו במידע - ככל שתו תדיר יותר, כך הוא יופיע גבוה יותר בעץ )כלומר - המסלול
+ מהשורש אליו קצר יותר(.
+ לאחר מכן, בונים קוד רישא ע
+\begin_inset Quotes erd
+\end_inset
+
+י קביעת קוד לכל עלה בעץ )כלומר - כל תו( ע
+\begin_inset Quotes erd
+\end_inset
+
+י המסלול אליו מהשורש.
+ השיטה מבטיחה שיווצר לנו קוד רישא )מה שמאפשר קריאה שלו תו אחרי תו ועדיין
+ לפרש כל קוד בצורה ייחודית(.
+\end_layout
+
+\begin_layout Standard
+כעת, ניתן לשלב אותה יחד עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- אם ניקח מחרוזת מעל א
+\begin_inset Quotes erd
+\end_inset
+
+ב מגודל 
+\begin_inset Formula $k$
+\end_inset
+
+,
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+יתן דחיסה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+שלו לא
+\begin_inset Quotes erd
+\end_inset
+
+ב מגודל 
+\begin_inset Formula $m>k$
+\end_inset
+
+.
+ כעת נפעיל על המחרוזת הדחוסה את אלגוריתם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Huffman
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ כדי לתת לכל תו בא
+\begin_inset Quotes erd
+\end_inset
+
+ב החדש שלנו ייצוג בקוד רישא על סמך תדירותו במידע הדחוס.
+ אם נשמור את התוצאה הזו - למעשה התגברנו על הבעיה של הגדלת הא
+\begin_inset Quotes erd
+\end_inset
+
+ב שמתבצעת באלגוריתם הקודם.
+\end_layout
+
+\begin_layout Standard
+בסופו של דבר קיבלנו מאלגוריתם האפמן עץ הבנוי לפי השכיחויות של כל אחד מהתווים
+ במידע, ואת המידע כאשר כל תו מוחלף בייצוג שלו לפי האפמן.
+ כעת צריך לקודד את העץ על מנת שנוכל לפרוס את הקובץ בחזרה - נעשה זאת בעזרת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+DFS
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עליו ונשמור את התוצאה יחד עם המידע הדחוס.
+ כשנרצה לפרוס, נתרגם בחזרה את העץ מתוך ה
+\lang english
+DFS
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עליו, ואז לבנות תרגום מקוד לפי האפמן לתו המקורי.
+ כמובן שככל שא
+\begin_inset Quotes erd
+\end_inset
+
+ב שלנו יהיה יותר גדול - העץ שלנו יהיה גדול יותר, ונצטרך יותר תווים לייצג
+ אותו.
+\end_layout
+
+\begin_layout Standard
+על מנת לייצג מספרים שלמים - אני מממש שיטה לייצוגם ע
+\begin_inset Quotes erd
+\end_inset
+
+י קוד רישא באופן הבא:
+\begin_inset Formula 
+\[
+n\longrightarrow\underset{\left\lceil log(\left\lceil log(n+1)+1\right\rceil )\right\rceil \text{\ times}}{\underbrace{111}}0\underset{\left\lceil log(n+1)\right\rceil \ \text{binary in}}{\underbrace{110}}\ \ \underset{n\ \text{binary in}}{\underbrace{101101}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+שיטה זו מאפשרת לי לייצג כל מספר 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+ ב
+\begin_inset Formula $\left\lceil log(n+1)\right\rceil +1+2\left\lceil log(\left\lceil log(n+1)\right\rceil +1)\right\rceil $
+\end_inset
+
+ תווים.
+\end_layout
+
+\begin_layout Standard
+על מנת ליישם את השיטה נדרשתי ליישם תחילה את אלגוריתם האפמן.
+ המימוש נמצא כאן: 
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor/huffman_compression"
+target "https://github.com/JudahGazit/information-theory/tree/master/rotem_compressor/huffman_compression"
+literal "false"
+
+\end_inset
+
+, והוא מחולק למספר תתי מחלקות.
+ על מנת להשתמש בו לאחר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\lang hebrew
+, צריך לשרשר אותם בזה אחר זה, כפי שקורה ב
+\begin_inset CommandInset href
+LatexCommand href
+name "rotem_compressor.py"
+target "https://github.com/JudahGazit/information-theory/blob/master/rotem_compressor/rotem_compressor.py#L12-L15"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+את המידע שיוצא מהאפמן אני שומר באופן הבא:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d_{1}...d_{t}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h_{1}...h_{\bar{N}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+מספר התווים במידע המקורי
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+מספר התווים ב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+DFS
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של העץ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ה
+\lang english
+DFS
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+על העץ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+המידע המקודד
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+מיוצג בקידוד טבעיים
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+מיוצג בקידוד טבעיים
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+מיוצג בקידוד טבעיים
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+האפמן
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2552,6 +3299,462 @@ Huffman
 \color none
 \lang hebrew
  לקידוד מילים
+\end_layout
+
+\begin_layout Standard
+שתי השיטות המוצגות בסעיפים
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+2.1, 2.2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הן כלליות לחלוטין ועובדות על כל קובץ בינארי.
+ אך במשימה הזו נדרשים לדחוס קובץ טקסטואלי, ועל כן ניתן להשתמש בעובדה הזו
+ כדי להנות מיתרונות שיש למידע מסוג זה.
+\end_layout
+
+\begin_layout Standard
+הרעיון של השיטה הזו הוא לנצל את העובדה שמדובר בקובץ טקסט.
+ כיוון שזהו המצב, ניתן להניח שיש מילים שחוזרות הרבה יותר פעמים מהאחרות.
+ התרשים הבא מציג
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+word cloud
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של הקובץ - ככל שהמילה גדולה יותר - כך היא מופיעה מספר רב יותר של פעמים.
+ משמאל אפשר לראות את כמות הפעמים שמופיעה כל מילה, כאשר מסתכלים על
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+30
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+המילים שמופיעות הכי הרבה פעמים.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "33text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dickens_wordcloud.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "65text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename dickens_frequency.png
+	lyxscale 35
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כיוון שזהו המצב - היינו רוצים למצוא קוד שישמור למשל את המילה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+little
+\begin_inset Quotes erd
+\end_inset
+
+
+\lang hebrew
+
+\begin_inset Quotes erd
+\end_inset
+
+ )שמופיעה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+12884
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+פעמים( במספר ביטים קטן ככל האפשר, לעומת המילה 
+\begin_inset Quotes eld
+\end_inset
+
+
+\lang english
+
+\begin_inset Quotes eld
+\end_inset
+
+Hooper
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+)שמופיעה רק פעמיים(, למרות ששתיהן באותו האורך.
+\end_layout
+
+\begin_layout Standard
+בסופו של דבר, לאחר הסרת רווחים, ירידות שורה וסימני פיסוק - ישנן בקובץ 
+\begin_inset Formula $57520$
+\end_inset
+
+ מילים ייחודיות )ורק 
+\begin_inset Formula $45296$
+\end_inset
+
+ אם מתעלמים מאותיות גדולות/קטנות( - כלומר פחות מ 
+\begin_inset Formula $2^{16}$
+\end_inset
+
+ מילים.
+ אם נמיר כל מילה או סימן פיסוק במספר בין 
+\begin_inset Formula $1$
+\end_inset
+
+ ל 
+\begin_inset Formula $2^{16}$
+\end_inset
+
+ - נוכל להפעיל בקלות האפמן ולקבל דחיסה של הקובץ ביחס למילים שלו.
+ לאחר מכן, כל שנותר זה לכתוב פעם אחת את כל המילים לפי סדר המספרים שייכנו
+ אותן כדי לבצע את ההמרה בסוף התהליך.
+ כלומר האלגוריתם הוא:
+\end_layout
+
+\begin_layout Enumerate
+מצא את כל המילים היחודיות במחרוזת )ללא תוי פיסוק, רווחים או ירידות שורה(,
+ וסדר אותם בסדר כלשהו.
+ 
+\begin_inset Newline newline
+\end_inset
+
+כתוב את כמות המילים, ולאחריה את המילים לפי הסדר, מופרדות ברווחים, במחרוזת
+ הסופית.
+\end_layout
+
+\begin_layout Enumerate
+עבור כל מילה או תו פיסוק במחרוזת - החלף אותה במספר המייצג את מיקומה ברשימת
+ המילים.
+\end_layout
+
+\begin_layout Enumerate
+הפעל אלגוריתם האפמן על רצף המספרים שהתקבל, כאשר גודל הא
+\begin_inset Quotes erd
+\end_inset
+
+ב הוא ככמות המילים.
+ הוסף את התוצאה של האפמן למחרוזת הסופית.
+\end_layout
+
+\begin_layout Standard
+כדי לפרוס את הדחיסה, יש לקרוא תחילה את רשימת המילים, לאחריה - לפרוס את קוד
+ ההאפמן, ולהמיר כל מספר בתוצאה במילה שהיא מייצגת.
+\end_layout
+
+\begin_layout Standard
+השיטה הזו מאוד פשוטה אך עם זאת נתנה תוצאות טובות באופן שהפתיע אותי מאוד
+ - למרות שהיא צריכה למעשה לשמור את המילים המקוריות פעם אחת, היא הצליחה לדחוס
+ את הקובץ טוב יותר מ
+\lang english
+ZIP
+\lang hebrew
+.
+ 
 \end_layout
 
 \begin_layout Section
