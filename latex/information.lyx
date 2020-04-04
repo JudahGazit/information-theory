@@ -477,7 +477,7 @@ Huffman
 
 \begin_layout Standard
 במסמך זה אציג תחילה את כל אחת מהשיטות, אציג את המימוש שלי עבורן, ולבסוף
- אציג השוואה בביצועים )יחס הדחיסה וזמן ריצה( בינהן ואל מול
+ אציג השוואת ביצועים )יחס הדחיסה ביחס לפרמטרים שונים( בינהן ואל מול
 \family roman
 \series medium
 \shape up
@@ -3537,6 +3537,7 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename dickens_frequency.png
 	lyxscale 35
@@ -4959,8 +4960,249 @@ LZW
 סיכום
 \end_layout
 
+\begin_layout Standard
+בסופו של דבר, השיטה שאותה בחרתי לשימוש הינה שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+LZW
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עם קידוד אורכים משתנה, כאשר קבעתי את גודל המילון להיות 
+\begin_inset Formula $m=2^{20}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 שיטות נוספות שנוסו בזמן העבודה
+\end_layout
+
+\begin_layout Standard
+במהלך הדרך, ניסיתי להעזר בשיטות נוספות.
+ הקוד שלהם הוסר מה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+git
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ כדי למנוע בלבול 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+)הוא נמצא בהיסטוריית ה
+\lang english
+commits
+\lang hebrew
+(.
+\end_layout
+
+\begin_layout Standard
+השיטות שניסיתי:
+\end_layout
+
+\begin_layout Enumerate
+הוספת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Run Length Encoding
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לאחר שימוש בשיטה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- 
 \end_layout
 
 \begin_layout Subsection
