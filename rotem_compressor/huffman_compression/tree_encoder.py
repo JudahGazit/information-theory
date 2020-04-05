@@ -35,16 +35,15 @@ class TreeEncoder:
         return encode_tree
 
     def _construct_tree_from_list(self, encode, tree):
-        if tree.left is None and len(encode):
+        tree.left = tree.left or self.__construct_node_from_list(encode, tree.left)
+        tree.right = tree.right or self.__construct_node_from_list(encode, tree.right)
+
+    def __construct_node_from_list(self, encode, tree):
+        if tree is None and len(encode):
             current, new_node = decode_node(encode)
-            tree.left = new_node
             if current == NONLEAF_SYMBOL:
-                self._construct_tree_from_list(encode, tree.left)
-        if tree.right is None and len(encode):
-            current, new_node = decode_node(encode)
-            tree.right = new_node
-            if current == NONLEAF_SYMBOL:
-                self._construct_tree_from_list(encode, tree.right)
+                self._construct_tree_from_list(encode, new_node)
+            return new_node
 
     def decode_tree(self, bit_stack):
         encode_tree = self.__read_encoded_tree(bit_stack)
