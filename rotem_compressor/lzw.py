@@ -62,7 +62,7 @@ class LZW(ICompressor):
     def __decompress_bits(self, compressed, dictionary_inv, dictionary, prev_symbols):
         decompressed = []
         stack = BitStack(compressed)
-        code_width = 8
+        code_width = math.ceil(math.log2(self.initial_dictionary_size))
         while len(stack) >= code_width:
             if len(decompressed) < self.maximum_table_size - self.initial_dictionary_size:
                 code_width = math.ceil(math.log2(2 ** 8 + len(decompressed)))
