@@ -69,7 +69,7 @@ class WordsEncoder(ICompressor):
         decompressed = huffman.decompress(compressed.to_numbers())
         return decompressed
 
-    def __convert_codes_to_original_text(self, decompressed, words):
+    def __replace_indexes_to_words(self, decompressed, words):
         decompressed = [words[code - 1] for code in decompressed]
         decompressed = ''.join(decompressed)
         return decompressed
@@ -86,5 +86,5 @@ class WordsEncoder(ICompressor):
         word_amount = compressed.pop_natural_number()
         words = self.__decode_words(compressed, word_amount)
         decompressed = self.__decompress_payload(compressed, words)
-        decompressed = self.__convert_codes_to_original_text(decompressed, words)
+        decompressed = self.__replace_indexes_to_words(decompressed, words)
         return to_bytearray(decompressed)
