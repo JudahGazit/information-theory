@@ -7,9 +7,6 @@ from rotem_compressor.utils import to_bytearray
 
 
 class Huffman(ICompressor):
-    """
-        implementation of Huffman coding
-    """
     def __init__(self, dictionary_size=256):
         self.dictionary_size = dictionary_size
         self.tree_encoder = TreeEncoder()
