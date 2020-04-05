@@ -4,16 +4,21 @@ def to_bytearray(values):
     if isinstance(values, bytearray):
         return values
     for item in values:
-        if isinstance(item, str):
-            for c in item:
-                byte_array.append(ord(c))
-                max_int = max_int if max_int > ord(c) else ord(c)
-        else:
-            byte_array.append(item)
-            max_int = max_int if max_int > item else item
+        max_int = __add_item(byte_array, item, max_int)
     if max_int > 256:
         return byte_array
     return bytearray(byte_array)
+
+
+def __add_item(byte_array, item, max_int):
+    if isinstance(item, str):
+        for char in item:
+            byte_array.append(ord(char))
+            max_int = max_int if max_int > ord(char) else ord(char)
+    else:
+        byte_array.append(item)
+        max_int = max_int if max_int > item else item
+    return max_int
 
 
 def bits_to_numbers(bits):
@@ -21,7 +26,7 @@ def bits_to_numbers(bits):
     for index in range(0, len(bits), 8):
         bit = bits[index:index + 8]
         bit = ''.join(bit)
-        bit = bit[::-1].zfill(8)[::-1]
+        bit = bit[::-1].zfill(8)[::-1]  # encode last number with trailing zeroes
         bit = int(bit, 2)
         result.append(bit)
     return bytearray(result)
