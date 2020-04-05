@@ -24,12 +24,12 @@ class WordsEncoder(ICompressor):
         result = []
         word = ''
         for char in data:
-            word = self.__add_if_end_of_word(char, result, word)
+            word = self.__append_to_result_if_end_of_word(char, result, word)
         if word != '':
             result.append(word)
         return result
 
-    def __add_if_end_of_word(self, char, result, word):
+    def __append_to_result_if_end_of_word(self, char, result, word):
         if char not in DELIMITERS:
             word += char
         else:
@@ -54,7 +54,7 @@ class WordsEncoder(ICompressor):
         return decompressed_words
 
     def __compress_payload(self, data, words):
-        huffman = Huffman(2 ** math.ceil(math.log2(len(words)))).compress(data)
+        huffman = Huffman(len(words) + 1).compress(data)
         words_prefix = '\0'.join(words)
         compressed_prefix = self.lzw_compressor.compress(bytearray(map(ord, words_prefix)))
         compressed = BitStack([])
@@ -65,9 +65,13 @@ class WordsEncoder(ICompressor):
 
     def __decompress_payload(self, compressed, words):
         compressed.bit_array = compressed.bit_array[compressed.current_index:]
-        huffman = Huffman(2 ** math.ceil(math.log2(len(words))))
+        huffman = Huffman(len(words) + 1)
         decompressed = huffman.decompress(compressed.to_numbers())
+        return decompressed
+
+    def __convert_codes_to_original_text(self, decompressed, words):
         decompressed = [words[code - 1] for code in decompressed]
+        decompressed = ''.join(decompressed)
         return decompressed
 
     def compress(self, data):
@@ -82,4 +86,5 @@ class WordsEncoder(ICompressor):
         word_amount = compressed.pop_natural_number()
         words = self.__decode_words(compressed, word_amount)
         decompressed = self.__decompress_payload(compressed, words)
-        return to_bytearray(''.join(decompressed))
+        decompressed = self.__convert_codes_to_original_text(decompressed, words)
+        return to_bytearray(decompressed)
