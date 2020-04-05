@@ -1,5 +1,7 @@
 # information-theory
 
+pdf file: https://github.com/JudahGazit/information-theory/raw/master/information.pdf
+
 This is my project for Information Theory course 88-782. <br>
 The new compression is called `Rotem Compression` or `rg compression` (my initials).
 
