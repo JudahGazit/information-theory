@@ -6,9 +6,18 @@ from rotem_compressor.utils import *
 
 
 class LZW(ICompressor):
+    """
+    implementation of LZW algorithm
+    """
     initial_dictionary_size = 256
 
     def __init__(self, maximum_table_size=2 ** 24, raw_values=True):
+        """
+
+        :param maximum_table_size: maximal dictionary size to be used in LZW algorithm
+        :param raw_values: when True: return all the results encoded as int.
+        when False: encode the results using "variable length" codes.
+        """
         self.maximum_table_size = maximum_table_size
         self.raw_values = raw_values
 

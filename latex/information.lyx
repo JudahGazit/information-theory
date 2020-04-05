@@ -1818,8 +1818,13 @@ LZ78
 \begin_inset Formula $D$
 \end_inset
 
-, כך ש 
-\begin_inset Formula $D(s_{i})=i$
+.
+ מתקיים 
+\begin_inset Formula $s_{i}\in D$
+\end_inset
+
+ לכל 
+\begin_inset Formula $1\leq i\leq N$
 \end_inset
 
 .
@@ -2059,7 +2064,7 @@ LZ78
 \end_layout
 
 \begin_layout Standard
-לאור אלו, ניתן לפרוש את המחרוזת ע
+לאור אלו, ניתן לפרוס את המחרוזת ע
 \begin_inset Quotes erd
 \end_inset
 
@@ -2935,8 +2940,8 @@ DFS
 \begin_inset Quotes erd
 \end_inset
 
-ב שלנו יהיה יותר גדול - העץ שלנו יהיה גדול יותר, ונצטרך יותר תווים לייצג
- אותו.
+ב שלנו יהיה יותר גדול - העץ שלנו יהיה גדול יותר, ונצטרך יותר מחרוזת ארוכה
+ יותר כדי לייצג אותו.
 \end_layout
 
 \begin_layout Standard
@@ -3365,7 +3370,7 @@ Huffman
 \begin_layout Standard
 הרעיון של השיטה הזו הוא לנצל את העובדה שמדובר בקובץ טקסט.
  כיוון שזהו המצב, ניתן להניח שיש מילים שחוזרות הרבה יותר פעמים מהאחרות.
- התרשים הבא מציג
+ התרשים הימני מציג
 \family roman
 \series medium
 \shape up
@@ -3687,7 +3692,7 @@ Hooper
 \uwave default
 \noun default
 \color inherit
-)שמופיעה רק פעמיים(, למרות ששתיהן באותו האורך.
+)שמופיעה רק פעמיים(, למרות ששתיהן באותו האורך במחרוזת המקורית.
 \end_layout
 
 \begin_layout Standard
@@ -3713,8 +3718,8 @@ Hooper
 \end_inset
 
  - נוכל להפעיל בקלות האפמן ולקבל דחיסה של הקובץ ביחס למילים שלו.
- לאחר מכן, כל שנותר זה לכתוב פעם אחת את כל המילים לפי סדר המספרים שייכנו
- אותן כדי לבצע את ההמרה בסוף התהליך.
+ לאחר מכן, כל שנותר זה לכתוב פעם אחת את כל המילים לפי סדר המספרים המייצגים
+ אותן.
  כלומר האלגוריתם הוא:
 \end_layout
 
@@ -3740,7 +3745,7 @@ Hooper
 \end_inset
 
 ב הוא ככמות המילים.
- הוסף את התוצאה של האפמן למדחרוזת הסופית.
+ הוסף את התוצאה של האפמן למחרוזת הסופית.
 \end_layout
 
 \begin_layout Standard
@@ -3982,10 +3987,6 @@ LZW
 \noun default
 \color inherit
 יצר היה ענקי?
-\begin_inset Newline newline
-\end_inset
-
-המטרה של הפרק הזה היא לבצע השוואה מסודרת בין השיטות.
 \end_layout
 
 \begin_layout Standard
@@ -4721,7 +4722,8 @@ Huffman
 \uwave default
 \noun default
 \color inherit
-ללא קידוד העץ )כמובן שזו דחיסה שלא ניתנת לשחזור(.
+ללא קידוד העץ )כמובן שזו דחיסה שלא ניתנת לשחזור(, כדי שנוכל להבין מה הנפח
+ היחסי שתופס המידע ביחס לעץ.
  התרשים הבא מציג את גודל הקובץ בשיטה מספר
 \family roman
 \series medium
@@ -5202,12 +5204,454 @@ Run Length Encoding
 \uwave default
 \noun default
 \color inherit
-- 
+-
+\begin_inset Newline newline
+\end_inset
+
+האינטואיציה שלי אמרה שככל שהעץ יהיה 
+\begin_inset Quotes eld
+\end_inset
+
+עמוק
+\begin_inset Quotes erd
+\end_inset
+
+ יותר כך ב
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+DFS
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+על העץ יהיו רצפים ארוכים יותר של אפסים.
+ לשם כך רציתי להוסיף
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+RLE
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+בתור דחיסה על גבי האפמן, אך הסתבר שזה לא הועיל בכלל היות והרצפים לא היו
+ מספיק ארוכים כדי של
+\lang english
+RLE
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+יהיה יתרון.
 \end_layout
 
-\begin_layout Subsection
-רעיונות לייעול זמני ריצה
+\begin_layout Enumerate
+ניסיון לשחזר את שיטת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+bzip2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- שיטה זו משתמשת בהאפמן בתור המנוע העיקרי אך לפני זה מבצעת טרנספורמציות
+ על המידע כך שיווצרו רצפים ארוכים מאותו תו ועליהם מפעילה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+RLE
+\lang hebrew
+.
+ היא משתמשת בשתי טרנספורמציות מקדימות:
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+התמרת בורווס-וילר )
+\lang english
+(Burrows–Wheeler transform
+\lang hebrew
+ - למעשה בוחרת פרמוטציה על בלוקים מתוך המידע שבהם ישנם רצפים חוזרים גדולים
+ יותר מהטקסט המקורי
+\end_layout
+
+\begin_layout Enumerate
+התמרת 
+\lang english
+Move-to-front
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ שמסתכלת על הטקסט כ
+\begin_inset Quotes erd
+\end_inset
+
+מחסנית
+\begin_inset Quotes erd
+\end_inset
+
+ ובכל פעם מחליפה את התו באינדקס שלו במחסנית ושמה אותו בתחילתה.
+\begin_inset Newline newline
+\end_inset
+
+כך רצפים כמו 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+ababa
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מקודדים להיות 
+\begin_inset Formula $0,1,1,1,1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+לאחר שתי הטרנספורמציות היא מפעילה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+RLE
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+על המידע כך שהפוטנציאל לדחוס יהיה גדול יותר.
+ לאחר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+RLE
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מפעילים האפמן.
+\begin_inset Newline newline
+\end_inset
+
+השיטה הזו - למרות שמימשתי את כולה - לא נתנה תוצאות שמתקרבות לתוצאות שהראתי
+ כאן, גם מבחינת זמן הריצה.
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
