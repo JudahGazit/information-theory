@@ -13,7 +13,7 @@ class LZW(ICompressor):
 
         :param maximum_table_size: maximal dictionary size to be used in LZW algorithm
         :param raw_values: when True: return all the results encoded as int.
-        when False: encode the results using "variable length" codes.
+                           when False: encode the results using "variable length" codes.
         """
         self.maximum_table_size = maximum_table_size
         self.raw_values = raw_values
