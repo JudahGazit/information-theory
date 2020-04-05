@@ -5,7 +5,7 @@ from rotem_compressor.rotem_compressor import RotemCompressor
 
 
 def print_help(exit_code):
-    print('test.py -i <input_file> -o <output_file>')
+    print('test.py [-d] -i <input_file> -o <output_file>')
     sys.exit(exit_code)
 
 
