@@ -1,5 +1,5 @@
 # information-theory
-
+Information Theory Course - Final work, Winter 2020, BIU <br>
 pdf file: https://github.com/JudahGazit/information-theory/raw/master/information.pdf
 
 This is my project for Information Theory course 88-782. <br>
